@@ -31,38 +31,50 @@ export default function Testimonials() {
   ]
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-gradient-to-br from-gray-50 to-white">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+            <span className="w-2 h-2 bg-primary-500 rounded-full mr-2 animate-pulse"></span>
+            What People Say
+          </div>
+          <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
             Testimonials
           </h2>
-          <p className="text-xl text-gray-600">
-            See what our property managers, landlords, and tenants have to say
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            See what our property managers, landlords, and tenants have to say about their experience with hoom
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div className="mb-6">
-                <p className="text-lg text-gray-700 italic leading-relaxed">
-                  "{testimonial.content}"
+            <div key={index} className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
+              <div className="mb-8">
+                <div className="text-6xl text-primary-200 mb-4">"</div>
+                <p className="text-lg text-gray-700 leading-relaxed relative z-10">
+                  {testimonial.content}
                 </p>
               </div>
               <div className="flex items-center space-x-4">
-                <Image
-                  src={testimonial.author.image}
-                  alt={testimonial.author.name}
-                  width={50}
-                  height={50}
-                  className="rounded-full object-cover"
-                />
+                <div className="relative">
+                  <Image
+                    src={testimonial.author.image}
+                    alt={testimonial.author.name}
+                    width={60}
+                    height={60}
+                    className="rounded-full object-cover ring-4 ring-primary-100"
+                  />
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="font-bold text-gray-900 text-lg">
                     {testimonial.author.name}
                   </div>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-primary-600 font-semibold">
                     {testimonial.author.role}
                   </div>
                 </div>

@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         airbnb: {
-          red: '#FF385C',
+          red: '#7065f0',
           dark: '#222222',
           gray: {
             50: '#F7F7F7',
@@ -21,19 +21,19 @@ module.exports = {
           },
         },
         primary: {
-          50: '#fff1f2',
-          100: '#ffe4e6',
-          200: '#fecdd3',
-          300: '#fda4af',
-          400: '#fb7185',
-          500: '#FF385C',
-          600: '#f43f5e',
-          700: '#e11d48',
-          800: '#be123c',
-          900: '#9f1239',
+          50: '#f0f0ff',
+          100: '#e0e0ff',
+          200: '#c7c7ff',
+          300: '#a5a5ff',
+          400: '#7c7cff',
+          500: '#7065f0',
+          600: '#5c52d9',
+          700: '#4f45c2',
+          800: '#4339a6',
+          900: '#3a3085',
         },
         secondary: '#222222',
-        accent: '#FF385C',
+        accent: '#7065f0',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

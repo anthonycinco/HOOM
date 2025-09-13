@@ -26,24 +26,24 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <HoomLogo size="md" />
-            <span className="text-xl font-bold text-airbnb-red">hoom</span>
+            <span className="text-xl font-bold text-primary-600">hoom</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <Link href="/rent" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+            <Link href="/rent" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               Rent
             </Link>
-            <Link href="/buy" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+            <Link href="/buy" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               Buy
             </Link>
-            <Link href="/sell" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+            <Link href="/sell" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               Sell
             </Link>
-            <Link href="/blog" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+            <Link href="/blog" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               Blog
             </Link>
-            <Link href="/faq" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+            <Link href="/faq" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               FAQ
             </Link>
           </div>
@@ -51,7 +51,7 @@ export default function Navbar() {
           {/* Right Side - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
             {/* Become a Host */}
-            <Link href="/sell" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+            <Link href="/sell" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               Become a Host
             </Link>
 
@@ -96,13 +96,13 @@ export default function Navbar() {
               <div className="flex items-center space-x-2">
                 <button 
                   onClick={() => openAuth('login')}
-                  className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors"
+                  className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors"
                 >
                   Log in
                 </button>
                 <button 
                   onClick={() => openAuth('signup')}
-                  className="bg-airbnb-red text-white px-4 py-2 rounded-full font-semibold hover:bg-red-600 transition-colors"
+                  className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Sign up
                 </button>
@@ -203,7 +203,7 @@ export default function Navbar() {
                       openAuth('signup')
                       setIsMenuOpen(false)
                     }}
-                    className="w-full bg-airbnb-red text-white py-3 rounded-lg font-semibold"
+                    className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-3 rounded-lg font-semibold shadow-lg"
                   >
                     Sign up
                   </button>
