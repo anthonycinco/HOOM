@@ -8,8 +8,10 @@ import { Search, Filter, Star, Heart, MapPin, Wifi, Car, Coffee, Dumbbell, Shiel
 import Image from 'next/image'
 import Link from 'next/link'
 import HoomValueLogo from '@/components/HoomValueLogo'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function RentPage() {
+  const { t } = useLanguage()
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
@@ -189,7 +191,7 @@ export default function RentPage() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by location, property type, or amenities"
+                    placeholder={t('rent.searchPlaceholder')}
                     className="flex-1 outline-none text-airbnb-dark placeholder-airbnb-gray-300"
                   />
                 </div>
@@ -201,7 +203,7 @@ export default function RentPage() {
                   <span className="text-airbnb-gray-300 mr-3 text-sm">📅</span>
                   <input
                     type="date"
-                    placeholder="Move-in date"
+                    placeholder={t('rent.moveInDate')}
                     className="flex-1 outline-none text-airbnb-dark placeholder-airbnb-gray-300"
                   />
                 </div>
@@ -212,11 +214,11 @@ export default function RentPage() {
                 <div className="flex items-center border border-airbnb-gray-100 rounded-lg px-4 py-3 hover:border-airbnb-dark transition-colors">
                   <span className="text-airbnb-gray-300 mr-3 text-sm">👥</span>
                   <select className="flex-1 outline-none text-airbnb-dark">
-                    <option>Number of guests</option>
-                    <option>1 guest</option>
-                    <option>2 guests</option>
-                    <option>3 guests</option>
-                    <option>4+ guests</option>
+                    <option>{t('rent.numberOfGuests')}</option>
+                    <option>1 {t('rent.guests')}</option>
+                    <option>2 {t('rent.guests')}</option>
+                    <option>3 {t('rent.guests')}</option>
+                    <option>4+ {t('rent.guests')}</option>
                   </select>
                 </div>
               </div>
@@ -228,18 +230,18 @@ export default function RentPage() {
                   className="flex items-center space-x-2 px-4 py-3 border border-airbnb-gray-100 rounded-lg hover:border-airbnb-dark transition-colors"
                 >
                   <Filter className="h-4 w-4" />
-                  <span className="text-sm font-medium">Filters</span>
+                  <span className="text-sm font-medium">{t('rent.filters')}</span>
                 </button>
                 <select 
                   value={propertyType}
                   onChange={(e) => setPropertyType(e.target.value)}
                   className="px-4 py-3 border border-airbnb-gray-100 rounded-lg hover:border-airbnb-dark transition-colors text-sm"
                 >
-                  <option value="all">All Types</option>
-                  <option value="dormitory">Dormitory</option>
-                  <option value="apartment">Apartment</option>
-                  <option value="studio">Studio</option>
-                  <option value="student housing">Student Housing</option>
+                  <option value="all">{t('rent.allTypes')}</option>
+                  <option value="dormitory">{t('rent.dormitory')}</option>
+                  <option value="apartment">{t('rent.apartment')}</option>
+                  <option value="studio">{t('rent.studio')}</option>
+                  <option value="student housing">{t('rent.studentHousing')}</option>
                 </select>
               </div>
             </div>
@@ -267,22 +269,22 @@ export default function RentPage() {
               <div className="mt-4 p-4 bg-gray-50 rounded-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Price Range</label>
+                    <label className="block text-sm font-medium mb-2">{t('rent.priceRange')}</label>
                     <div className="flex items-center space-x-2">
                       <input
                         type="number"
                         value={priceRange.min}
                         onChange={(e) => setPriceRange(prev => ({ ...prev, min: parseInt(e.target.value) || 0 }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                        placeholder="Min price"
+                        placeholder={t('rent.minPrice')}
                       />
-                      <span>to</span>
+                      <span>{t('rent.to')}</span>
                       <input
                         type="number"
                         value={priceRange.max}
                         onChange={(e) => setPriceRange(prev => ({ ...prev, max: parseInt(e.target.value) || 50000 }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                        placeholder="Max price"
+                        placeholder={t('rent.maxPrice')}
                       />
                     </div>
                   </div>
@@ -296,19 +298,19 @@ export default function RentPage() {
         <div className="container-custom py-8">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-bold text-airbnb-dark">
-              {filteredProperties.length} properties in Cebu
+              {filteredProperties.length} {t('rent.propertiesInCebu')}
             </h1>
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-airbnb-gray-300">Sort by:</span>
+              <span className="text-sm text-airbnb-gray-300">{t('rent.sortBy')}</span>
               <select 
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 className="border border-airbnb-gray-100 rounded-lg px-3 py-2 text-sm"
               >
-                <option value="recommended">Recommended</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Rating</option>
+                <option value="recommended">{t('rent.recommended')}</option>
+                <option value="price-low">{t('rent.priceLowToHigh')}</option>
+                <option value="price-high">{t('rent.priceHighToLow')}</option>
+                <option value="rating">{t('rent.rating')}</option>
               </select>
             </div>
           </div>
@@ -361,7 +363,7 @@ export default function RentPage() {
                       <span className="text-lg font-semibold text-airbnb-dark">
                         ₱{property.price.toLocaleString()}
                       </span>
-                      <span className="text-airbnb-gray-300">/month</span>
+                      <span className="text-airbnb-gray-300">{t('rent.month')}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Star className="h-4 w-4 text-airbnb-red fill-current" />
@@ -384,8 +386,8 @@ export default function RentPage() {
 
                   {/* Property Details */}
                   <div className="flex items-center space-x-4 text-airbnb-gray-300 text-sm">
-                    <span>{property.beds} beds</span>
-                    <span>{property.baths} baths</span>
+                    <span>{property.beds} {t('rent.beds')}</span>
+                    <span>{property.baths} {t('rent.baths')}</span>
                     <span>{property.area}</span>
                   </div>
 
@@ -398,7 +400,7 @@ export default function RentPage() {
                     ))}
                     {property.amenities.length > 3 && (
                       <span className="text-xs text-airbnb-gray-300">
-                        +{property.amenities.length - 3} more
+                        +{property.amenities.length - 3} {t('rent.more')}
                       </span>
                     )}
                   </div>
@@ -417,7 +419,7 @@ export default function RentPage() {
               }}
               className="px-8 py-3 border border-primary-500 text-primary-500 font-semibold rounded-lg hover:bg-primary-500 hover:text-white transition-all duration-200"
             >
-              Show more
+{t('rent.showMore')}
             </button>
           </div>
         </div>

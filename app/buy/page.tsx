@@ -1,9 +1,13 @@
+'use client'
+
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Search, MapPin, Home, DollarSign, Star, Heart, Bed, Bath, Maximize } from 'lucide-react'
 import Image from 'next/image'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function BuyPage() {
+  const { t } = useLanguage()
   const properties = [
     {
       id: 1,
@@ -66,8 +70,8 @@ export default function BuyPage() {
       <div className="pt-20 pb-8">
         <div className="container-custom">
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Buy Student Properties</h1>
-            <p className="text-xl text-gray-600">Invest in student housing or find your first property</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('buy.title')}</h1>
+            <p className="text-xl text-gray-600">{t('buy.subtitle')}</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-lg mb-8">
@@ -76,14 +80,14 @@ export default function BuyPage() {
                 <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
-                  placeholder="Enter location or neighborhood"
+                  placeholder={t('buy.searchPlaceholder')}
                   className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 />
               </div>
               <div className="flex-1 relative">
                 <DollarSign className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <select className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                  <option>Budget Range</option>
+                  <option>{t('buy.priceRange')}</option>
                   <option>Under P2M</option>
                   <option>P2M - P3M</option>
                   <option>P3M - P5M</option>
@@ -93,7 +97,7 @@ export default function BuyPage() {
               <div className="flex gap-2">
                 <button className="btn-outline flex items-center space-x-2">
                   <Home className="h-5 w-5" />
-                  <span>Property Type</span>
+                  <span>{t('buy.propertyType')}</span>
                 </button>
                 <button className="btn-outline flex items-center space-x-2">
                   <span>Investment Type</span>
@@ -145,11 +149,11 @@ export default function BuyPage() {
                   <div className="flex space-x-6 text-sm text-gray-600">
                     <span className="flex items-center space-x-1">
                       <Bed className="h-4 w-4" />
-                      <span>{property.beds} Beds</span>
+                      <span>{property.beds} {t('buy.beds')}</span>
                     </span>
                     <span className="flex items-center space-x-1">
                       <Bath className="h-4 w-4" />
-                      <span>{property.baths} Baths</span>
+                      <span>{property.baths} {t('buy.baths')}</span>
                     </span>
                     <span className="flex items-center space-x-1">
                       <Maximize className="h-4 w-4" />

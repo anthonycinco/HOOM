@@ -1,9 +1,13 @@
+'use client'
+
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { BarChart3, Home, Users, DollarSign, Calendar, Settings, Plus, Eye, Edit, Trash2 } from 'lucide-react'
 import Image from 'next/image'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ManagePage() {
+  const { t } = useLanguage()
   const properties = [
     {
       id: 1,

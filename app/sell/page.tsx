@@ -1,8 +1,12 @@
+'use client'
+
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { Upload, MapPin, DollarSign, Home, Camera, FileText, CheckCircle } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function SellPage() {
+  const { t } = useLanguage()
   return (
     <main className="min-h-screen bg-gray-50">
       <Navbar />
@@ -13,10 +17,10 @@ export default function SellPage() {
             <div className="text-center mb-16">
               <div className="inline-flex items-center px-6 py-3 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
                 <span className="w-2 h-2 bg-primary-500 rounded-full mr-2 animate-pulse"></span>
-                List Your Property
+{t('sell.listProperty')}
               </div>
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Sell Your Property</h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">List your property for sale and reach thousands of students and investors looking for housing. Join our community of successful property owners.</p>
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">{t('sell.title')}</h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t('sell.subtitle')}</p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-16">
