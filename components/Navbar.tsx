@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, User, Globe, Menu as MenuIcon } from 'lucide-react'
 import Link from 'next/link'
 import AuthModal from './AuthModal'
 import HoomLogo from './HoomLogo'
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isAuthOpen, setIsAuthOpen] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const openAuth = (mode: 'login' | 'signup') => {
@@ -19,125 +20,195 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 z-50 transition-all duration-300">
+    <nav className="fixed top-0 left-0 right-0 bg-white border-b border-airbnb-gray-100 z-50">
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <HoomLogo size="md" />
-              <span className="text-2xl font-bold text-gray-900">hoom</span>
-            </Link>
-          </div>
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <HoomLogo size="md" />
+            <span className="text-xl font-bold text-airbnb-red">hoom</span>
+          </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/rent" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            <Link href="/rent" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
               Rent
             </Link>
-            <Link href="/buy" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/buy" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
               Buy
             </Link>
-            <Link href="/sell" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/sell" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
               Sell
             </Link>
-            {isLoggedIn && (
-              <div className="relative group">
-                <Link href="/manage" className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors">
-                  Manage Property
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </Link>
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                  <Link href="/sell" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                    List Property
-                  </Link>
-                  <Link href="/manage" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                    Dashboard
-                  </Link>
-                  <Link href="/manage" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                    Analytics
-                  </Link>
-                </div>
+            <Link href="/blog" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+              Blog
+            </Link>
+            <Link href="/faq" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+              FAQ
+            </Link>
+          </div>
+
+          {/* Right Side - Desktop */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {/* Become a Host */}
+            <Link href="/sell" className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors">
+              Become a Host
+            </Link>
+
+            {/* Language/Currency */}
+            <button className="p-2 hover:bg-airbnb-gray-50 rounded-full transition-colors">
+              <Globe className="h-5 w-5 text-airbnb-dark" />
+            </button>
+
+            {/* User Menu */}
+            {isLoggedIn ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 p-2 border border-airbnb-gray-100 rounded-full hover:shadow-md transition-all"
+                >
+                  <MenuIcon className="h-4 w-4 text-airbnb-dark" />
+                  <User className="h-5 w-5 text-airbnb-dark" />
+                </button>
+                
+                {showUserMenu && (
+                  <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-airbnb-gray-100 py-2">
+                    <Link href="/manage" className="block px-4 py-2 text-airbnb-dark hover:bg-airbnb-gray-50">
+                      Manage Properties
+                    </Link>
+                    <Link href="/profile" className="block px-4 py-2 text-airbnb-dark hover:bg-airbnb-gray-50">
+                      Profile
+                    </Link>
+                    <Link href="/settings" className="block px-4 py-2 text-airbnb-dark hover:bg-airbnb-gray-50">
+                      Settings
+                    </Link>
+                    <hr className="my-2" />
+                    <button 
+                      onClick={() => setIsLoggedIn(false)}
+                      className="block w-full text-left px-4 py-2 text-airbnb-dark hover:bg-airbnb-gray-50"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={() => openAuth('login')}
+                  className="text-airbnb-dark hover:text-airbnb-red font-medium transition-colors"
+                >
+                  Log in
+                </button>
+                <button 
+                  onClick={() => openAuth('signup')}
+                  className="bg-airbnb-red text-white px-4 py-2 rounded-full font-semibold hover:bg-red-600 transition-colors"
+                >
+                  Sign up
+                </button>
               </div>
             )}
-            <div className="relative group">
-              <Link href="/blog" className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors">
-                Blog
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </Link>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                <Link href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  All Posts
-                </Link>
-                <Link href="/faq" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  FAQ
-                </Link>
-                <Link href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  Guides
-                </Link>
-              </div>
-            </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
-            <button 
-              onClick={() => openAuth('login')}
-              className="btn-secondary"
-            >
-              Login
-            </button>
-            <button 
-              onClick={() => openAuth('signup')}
-              className="btn-primary"
-            >
-              Sign up
-            </button>
-          </div>
-
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            className="lg:hidden p-2 rounded-full hover:bg-airbnb-gray-50 transition-colors"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
-            <div className="px-4 py-6 space-y-4">
-              <Link href="/rent" className="block text-gray-700 hover:text-primary-500 font-medium">
+          <div className="lg:hidden border-t border-airbnb-gray-100 bg-white">
+            <div className="py-4 space-y-1">
+              <Link 
+                href="/rent" 
+                className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Rent
               </Link>
-              <Link href="/buy" className="block text-gray-700 hover:text-primary-500 font-medium">
+              <Link 
+                href="/buy" 
+                className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Buy
               </Link>
-              <Link href="/sell" className="block text-gray-700 hover:text-primary-500 font-medium">
+              <Link 
+                href="/sell" 
+                className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Sell
               </Link>
-              {isLoggedIn && (
-                <Link href="/manage" className="block text-gray-700 hover:text-primary-500 font-medium">
-                  Manage Property
-                </Link>
-              )}
-              <Link href="/blog" className="block text-gray-700 hover:text-primary-500 font-medium">
+              <Link 
+                href="/blog" 
+                className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Blog
               </Link>
-              <Link href="/faq" className="block text-gray-700 hover:text-primary-500 font-medium">
+              <Link 
+                href="/faq" 
+                className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 FAQ
               </Link>
-              <div className="pt-4 border-t border-gray-200 space-y-2">
-                <button 
-                  onClick={() => openAuth('login')}
-                  className="w-full btn-secondary"
-                >
-                  Login
-                </button>
-                <button 
-                  onClick={() => openAuth('signup')}
-                  className="w-full btn-primary"
-                >
-                  Sign up
-                </button>
-              </div>
+              
+              <hr className="my-4" />
+              
+              {isLoggedIn ? (
+                <>
+                  <Link 
+                    href="/manage" 
+                    className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Manage Properties
+                  </Link>
+                  <Link 
+                    href="/profile" 
+                    className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <button 
+                    onClick={() => {
+                      setIsLoggedIn(false)
+                      setIsMenuOpen(false)
+                    }}
+                    className="block w-full text-left px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
+                  >
+                    Log out
+                  </button>
+                </>
+              ) : (
+                <div className="px-4 space-y-2">
+                  <button 
+                    onClick={() => {
+                      openAuth('login')
+                      setIsMenuOpen(false)
+                    }}
+                    className="w-full text-left py-3 text-airbnb-dark font-medium"
+                  >
+                    Log in
+                  </button>
+                  <button 
+                    onClick={() => {
+                      openAuth('signup')
+                      setIsMenuOpen(false)
+                    }}
+                    className="w-full bg-airbnb-red text-white py-3 rounded-lg font-semibold"
+                  >
+                    Sign up
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}

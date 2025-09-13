@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Heart, Bed, Bath, Maximize } from 'lucide-react'
+import { Heart, Star, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import HoomValueLogo from './HoomValueLogo'
@@ -13,35 +13,86 @@ export default function Properties() {
     {
       id: 1,
       image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop',
-      price: 'P8,500.00',
+      price: 8500,
       name: 'Student Haven Dormitory',
       location: 'Nasipit, Talamban, Cebu City',
+      rating: 4.8,
+      reviews: 124,
       beds: 3,
       baths: 2,
       area: '5x7 m²',
-      popular: true
+      popular: true,
+      type: 'Dormitory'
     },
     {
       id: 2,
       image: 'https://images.unsplash.com/photo-1529408632839-a54952c491e5?w=400&h=300&fit=crop',
-      price: 'P7,200.00',
+      price: 7200,
       name: 'Campus View Apartment',
-      location: 'Colon Street, Cebu City, 6000',
+      location: 'Colon Street, Cebu City',
+      rating: 4.9,
+      reviews: 89,
       beds: 4,
       baths: 2,
       area: '6x7.5 m²',
-      popular: true
+      popular: true,
+      type: 'Apartment'
     },
     {
       id: 3,
       image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=300&fit=crop',
-      price: 'P10,500.00',
+      price: 10500,
       name: 'Modern Student Housing',
-      location: 'Fatima Street, Duljo, Cebu City, 6000',
+      location: 'Fatima Street, Duljo, Cebu City',
+      rating: 4.7,
+      reviews: 156,
       beds: 4,
       baths: 3,
       area: '8x10 m²',
-      popular: true
+      popular: true,
+      type: 'Student Housing'
+    },
+    {
+      id: 4,
+      image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=300&fit=crop',
+      price: 6800,
+      name: 'Cozy Studio Apartment',
+      location: 'Lahug, Cebu City',
+      rating: 4.6,
+      reviews: 67,
+      beds: 2,
+      baths: 1,
+      area: '4x5 m²',
+      popular: false,
+      type: 'Studio'
+    },
+    {
+      id: 5,
+      image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+      price: 9200,
+      name: 'University Heights',
+      location: 'IT Park, Cebu City',
+      rating: 4.9,
+      reviews: 203,
+      beds: 3,
+      baths: 2,
+      area: '6x8 m²',
+      popular: true,
+      type: 'Apartment'
+    },
+    {
+      id: 6,
+      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop',
+      price: 5800,
+      name: 'Budget Friendly Dorm',
+      location: 'Banilad, Cebu City',
+      rating: 4.4,
+      reviews: 45,
+      beds: 2,
+      baths: 1,
+      area: '3x4 m²',
+      popular: false,
+      type: 'Dormitory'
     }
   ]
 
@@ -58,77 +109,108 @@ export default function Properties() {
   }
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="py-16 bg-white">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Based on your location
+        <div className="mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-airbnb-dark mb-4">
+            Explore student housing in Cebu
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Some of our picked properties near you location.
+          <p className="text-airbnb-gray-300 text-lg">
+            Discover verified properties perfect for students
           </p>
-          <Link href="/rent" className="btn-outline">
-            Browse more properties
-          </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {properties.map((property) => (
-            <div key={property.id} className="card group">
-              <div className="relative h-64 overflow-hidden rounded-t-xl">
-                <Image
-                  src={property.image}
-                  alt={property.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                  <div className="absolute top-4 right-4">
-                    <HoomValueLogo size="sm" />
-                  </div>
-                {property.popular && (
-                  <div className="absolute bottom-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center space-x-1">
-                    <span>⭐</span>
-                    <span>POPULAR</span>
-                  </div>
-                )}
+            <div key={property.id} className="group cursor-pointer">
+              <div className="relative">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <Image
+                    src={property.image}
+                    alt={property.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                
+                {/* Favorite Button */}
                 <button
-                  onClick={() => toggleFavorite(property.id)}
-                  className={`absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleFavorite(property.id)
+                  }}
+                  className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-200 ${
                     favorites.has(property.id)
-                      ? 'bg-accent text-white'
-                      : 'bg-white/90 text-gray-600 hover:bg-accent hover:text-white'
+                      ? 'text-airbnb-red bg-white'
+                      : 'text-white bg-black/20 hover:bg-black/40'
                   }`}
                 >
-                  <Heart className={`h-5 w-5 ${favorites.has(property.id) ? 'fill-current' : ''}`} />
+                  <Heart className={`h-4 w-4 ${favorites.has(property.id) ? 'fill-current' : ''}`} />
                 </button>
+
+                {/* Verified Badge */}
+                <div className="absolute top-3 left-3">
+                  <HoomValueLogo size="sm" />
+                </div>
+
+                {/* Property Type */}
+                <div className="absolute bottom-3 left-3">
+                  <span className="bg-white/90 backdrop-blur-sm text-airbnb-dark text-xs font-semibold px-2 py-1 rounded-full">
+                    {property.type}
+                  </span>
+                </div>
               </div>
-              <div className="p-6">
-                <div className="text-2xl font-bold text-primary-500 mb-2">
-                  {property.price} /month
+
+              <div className="mt-3">
+                {/* Price and Rating */}
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-1">
+                    <span className="text-lg font-semibold text-airbnb-dark">
+                      ₱{property.price.toLocaleString()}
+                    </span>
+                    <span className="text-airbnb-gray-300">/month</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <Star className="h-4 w-4 text-airbnb-red fill-current" />
+                    <span className="text-sm font-medium text-airbnb-dark">
+                      {property.rating}
+                    </span>
+                    <span className="text-airbnb-gray-300 text-sm">
+                      ({property.reviews})
+                    </span>
+                  </div>
                 </div>
-                <div className="text-xl font-semibold text-gray-900 mb-1">
+
+                {/* Property Name */}
+                <h3 className="text-airbnb-dark font-medium mb-1 line-clamp-1">
                   {property.name}
+                </h3>
+
+                {/* Location */}
+                <div className="flex items-center space-x-1 text-airbnb-gray-300 text-sm mb-2">
+                  <MapPin className="h-3 w-3" />
+                  <span className="line-clamp-1">{property.location}</span>
                 </div>
-                <div className="text-gray-600 mb-4">
-                  {property.location}
-                </div>
-                <div className="flex space-x-6 text-sm text-gray-600">
-                  <span className="flex items-center space-x-1">
-                    <Bed className="h-4 w-4" />
-                    <span>{property.beds} Beds</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <Bath className="h-4 w-4" />
-                    <span>{property.baths} Bathrooms</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <Maximize className="h-4 w-4" />
-                    <span>{property.area}</span>
-                  </span>
+
+                {/* Property Details */}
+                <div className="flex items-center space-x-4 text-airbnb-gray-300 text-sm">
+                  <span>{property.beds} beds</span>
+                  <span>{property.baths} baths</span>
+                  <span>{property.area}</span>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Show More Button */}
+        <div className="text-center mt-12">
+          <Link 
+            href="/rent"
+            className="inline-flex items-center px-6 py-3 border border-airbnb-dark text-airbnb-dark font-semibold rounded-lg hover:bg-airbnb-dark hover:text-white transition-all duration-200"
+          >
+            Show more
+          </Link>
         </div>
       </div>
     </section>

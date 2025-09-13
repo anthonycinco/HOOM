@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { MapPin, Calendar, Search } from 'lucide-react'
+import { MapPin, Calendar, Users, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import HoomValueLogo from './HoomValueLogo'
@@ -11,6 +11,7 @@ export default function Hero() {
   const [activeTab, setActiveTab] = useState('rent')
   const [location, setLocation] = useState('Cebu City, Cebu')
   const [moveInDate, setMoveInDate] = useState('')
+  const [guests, setGuests] = useState('1 guest')
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab)
@@ -34,40 +35,32 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen flex items-center">
+    <section className="pt-16 pb-8 bg-white">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Find Your Dream Dormitory—<br />
-              <span className="text-gradient">Effortlessly!</span>
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-airbnb-dark mb-4">
+              Find your perfect student home
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Browse verified listings for students, with no hidden fees. Your perfect space in Cebu is just a click away.
+            <p className="text-lg sm:text-xl text-airbnb-gray-300 max-w-2xl mx-auto">
+              Discover verified dormitories and apartments in Cebu. Safe, affordable, and perfect for students.
             </p>
+          </div>
 
-            <div className="flex items-center space-x-8 mb-12">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary-500">50k+</div>
-                <div className="text-gray-600 font-medium">renters</div>
-              </div>
-              <div className="w-px h-12 bg-gray-300"></div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary-500">10k+</div>
-                <div className="text-gray-600 font-medium">properties</div>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-xl">
-              <div className="flex space-x-2 mb-6">
+          {/* Search Bar - Airbnb Style */}
+          <div className="bg-white rounded-2xl shadow-lg border border-airbnb-gray-100 p-2 mb-8">
+            <div className="flex flex-col lg:flex-row">
+              {/* Tab Buttons */}
+              <div className="flex rounded-xl bg-airbnb-gray-50 p-1 mb-4 lg:mb-0 lg:mr-4">
                 {['rent', 'buy', 'sell'].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => handleTabChange(tab)}
-                    className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 capitalize ${
+                    className={`flex-1 py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-200 capitalize ${
                       activeTab === tab
-                        ? 'bg-primary-500 text-white'
-                        : 'text-gray-600 hover:bg-gray-100'
+                        ? 'bg-white text-airbnb-dark shadow-sm'
+                        : 'text-airbnb-gray-300 hover:text-airbnb-dark'
                     }`}
                   >
                     {tab}
@@ -75,93 +68,101 @@ export default function Hero() {
                 ))}
               </div>
 
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="flex-1 relative">
-                    <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input
-                      type="text"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-                      placeholder={activeTab === 'rent' ? 'Cebu City, Cebu' : activeTab === 'buy' ? 'Enter city or neighborhood' : 'Enter property address'}
-                    />
-                  </div>
-                  <div className="flex-1 relative">
-                    <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input
-                      type="text"
-                      value={moveInDate}
-                      onChange={(e) => setMoveInDate(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-                      placeholder={activeTab === 'rent' ? 'Select Move-in Date' : activeTab === 'buy' ? 'Preferred Date' : 'Listing Date'}
-                    />
-                  </div>
+              {/* Search Inputs */}
+              <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-2">
+                {/* Location */}
+                <div className="relative">
+                  <button className="w-full text-left p-4 border border-airbnb-gray-100 rounded-xl hover:border-airbnb-dark transition-colors">
+                    <div className="text-sm font-semibold text-airbnb-dark mb-1">Where</div>
+                    <div className="text-airbnb-gray-300 text-sm">{location}</div>
+                  </button>
+                  <MapPin className="absolute right-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-airbnb-gray-300" />
                 </div>
-                <button
-                  onClick={handleSearch}
-                  className="w-full sm:w-auto btn-primary flex items-center justify-center space-x-2 text-lg py-4 px-8"
-                >
-                  <Search className="h-5 w-5" />
-                  <span>
-                    {activeTab === 'rent' ? 'Browse Properties' : 
-                     activeTab === 'buy' ? 'Search Properties' : 
-                     'List Property'}
-                  </span>
-                </button>
+
+                {/* Check-in */}
+                <div className="relative">
+                  <button className="w-full text-left p-4 border border-airbnb-gray-100 rounded-xl hover:border-airbnb-dark transition-colors">
+                    <div className="text-sm font-semibold text-airbnb-dark mb-1">Check-in</div>
+                    <div className="text-airbnb-gray-300 text-sm">
+                      {moveInDate || 'Add dates'}
+                    </div>
+                  </button>
+                  <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-airbnb-gray-300" />
+                </div>
+
+                {/* Check-out */}
+                <div className="relative">
+                  <button className="w-full text-left p-4 border border-airbnb-gray-100 rounded-xl hover:border-airbnb-dark transition-colors">
+                    <div className="text-sm font-semibold text-airbnb-dark mb-1">Check-out</div>
+                    <div className="text-airbnb-gray-300 text-sm">Add dates</div>
+                  </button>
+                  <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-airbnb-gray-300" />
+                </div>
+
+                {/* Guests */}
+                <div className="relative md:col-span-1">
+                  <button className="w-full text-left p-4 border border-airbnb-gray-100 rounded-xl hover:border-airbnb-dark transition-colors">
+                    <div className="text-sm font-semibold text-airbnb-dark mb-1">Who</div>
+                    <div className="text-airbnb-gray-300 text-sm">{guests}</div>
+                  </button>
+                  <Users className="absolute right-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-airbnb-gray-300" />
+                </div>
+
+                {/* Search Button */}
+                <div className="md:col-span-2">
+                  <button
+                    onClick={handleSearch}
+                    className="w-full bg-airbnb-red text-white p-4 rounded-xl font-semibold hover:bg-red-600 transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <Search className="h-4 w-4" />
+                    <span>Search</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="bg-gray-200 rounded-2xl h-96 lg:h-[500px] relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 opacity-50"></div>
-              <div className="absolute top-8 left-8 w-72 bg-white rounded-xl shadow-xl overflow-hidden animate-float">
-                        <div className="relative h-40 bg-gray-300">
-                          <Image
-                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop"
-                            alt="Student dormitory room"
-                            fill
-                            className="object-cover"
-                          />
-                          <div className="absolute top-2 right-2">
-                            <HoomValueLogo size="sm" />
-                          </div>
-                        </div>
-                <div className="p-4">
-                  <div className="text-xl font-bold text-primary-500 mb-2">P13,500 /month</div>
-                  <div className="font-semibold text-gray-900 mb-1">Unit 2 Calyx Residences</div>
-                  <div className="text-gray-600 text-sm mb-3">Cebu City, Cebu</div>
-                  <div className="flex space-x-4 text-sm text-gray-600">
-                    <span>🛏️ 1</span>
-                    <span>🚿 1</span>
-                    <span>📐 2x5 m²</span>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute bottom-8 right-8 w-64 bg-white rounded-xl shadow-xl overflow-hidden animate-float" style={{ animationDelay: '1s' }}>
-                        <div className="relative h-32 bg-gray-300">
-                          <Image
-                            src="https://images.unsplash.com/photo-1529408632839-a54952c491e5?w=300&h=200&fit=crop"
-                            alt="Student apartment"
-                            fill
-                            className="object-cover"
-                          />
-                          <div className="absolute top-2 right-2">
-                            <HoomValueLogo size="sm" showText={false} />
-                          </div>
-                        </div>
-                <div className="p-4">
-                  <div className="text-lg font-bold text-primary-500 mb-2">P7,500 /month</div>
-                  <div className="font-semibold text-gray-900 mb-1">Mark's Condo</div>
-                  <div className="text-gray-600 text-sm mb-3">Cebu City, Cebu</div>
-                  <div className="flex space-x-4 text-sm text-gray-600">
-                    <span>🛏️ 2</span>
-                    <span>🚿 1</span>
-                    <span>📐 3x6m²</span>
-                  </div>
-                </div>
-              </div>
+          {/* Quick Filters */}
+          <div className="flex flex-wrap gap-4 mb-8">
+            <button className="flex items-center space-x-2 px-4 py-2 border border-airbnb-gray-100 rounded-full hover:border-airbnb-dark transition-colors">
+              <span className="text-2xl">🏠</span>
+              <span className="text-sm font-medium">Entire place</span>
+            </button>
+            <button className="flex items-center space-x-2 px-4 py-2 border border-airbnb-gray-100 rounded-full hover:border-airbnb-dark transition-colors">
+              <span className="text-2xl">🏢</span>
+              <span className="text-sm font-medium">Dormitory</span>
+            </button>
+            <button className="flex items-center space-x-2 px-4 py-2 border border-airbnb-gray-100 rounded-full hover:border-airbnb-dark transition-colors">
+              <span className="text-2xl">🏘️</span>
+              <span className="text-sm font-medium">Apartment</span>
+            </button>
+            <button className="flex items-center space-x-2 px-4 py-2 border border-airbnb-gray-100 rounded-full hover:border-airbnb-dark transition-colors">
+              <span className="text-2xl">💰</span>
+              <span className="text-sm font-medium">Under P10,000</span>
+            </button>
+            <button className="flex items-center space-x-2 px-4 py-2 border border-airbnb-gray-100 rounded-full hover:border-airbnb-dark transition-colors">
+              <span className="text-2xl">⭐</span>
+              <span className="text-sm font-medium">Top rated</span>
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-airbnb-dark">50k+</div>
+              <div className="text-airbnb-gray-300 text-sm">Students</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-airbnb-dark">10k+</div>
+              <div className="text-airbnb-gray-300 text-sm">Properties</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-airbnb-dark">100+</div>
+              <div className="text-airbnb-gray-300 text-sm">Cities</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-airbnb-dark">4.9</div>
+              <div className="text-airbnb-gray-300 text-sm">Rating</div>
             </div>
           </div>
         </div>
