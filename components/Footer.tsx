@@ -1,19 +1,21 @@
+import Link from 'next/link'
+
 export default function Footer() {
   const footerLinks = {
     'SELL A HOME': [
-      { name: 'Request an offer', href: '#request-offer' },
-      { name: 'Pricing', href: '#pricing' },
-      { name: 'Reviews', href: '#reviews' }
+      { name: 'Request an offer', href: '/sell' },
+      { name: 'Pricing', href: '/resources' },
+      { name: 'Reviews', href: '/resources' }
     ],
     'BUY, RENT AND SELL': [
-      { name: 'Buy and sell properties', href: '#buy-sell' },
-      { name: 'Rent home', href: '#rent-home' },
-      { name: 'Check HoomValue', href: '#hoomvalue' }
+      { name: 'Buy and sell properties', href: '/buy' },
+      { name: 'Rent home', href: '/rent' },
+      { name: 'Check HoomValue', href: '/resources' }
     ],
     'ABOUT': [
-      { name: 'Company', href: '#company' },
-      { name: 'How it works', href: '#how-it-works' },
-      { name: 'Contact', href: '#contact' }
+      { name: 'Company', href: '/resources' },
+      { name: 'How it works', href: '/resources' },
+      { name: 'Contact', href: '/resources' }
     ]
   }
 
@@ -22,10 +24,10 @@ export default function Footer() {
       <div className="container-custom">
         <div className="grid lg:grid-cols-4 gap-8 mb-8">
           <div className="lg:col-span-1">
-            <a href="#home" className="flex items-center text-2xl font-bold mb-4">
+            <Link href="/" className="flex items-center text-2xl font-bold mb-4">
               <span>hoom</span>
               <span className="text-primary-500 ml-1">🏠</span>
-            </a>
+            </Link>
             <p className="text-gray-400 text-sm">
               Redefining student housing and real estate in the Philippines.
             </p>
@@ -41,12 +43,12 @@ export default function Footer() {
                   <ul className="space-y-2">
                     {links.map((link) => (
                       <li key={link.name}>
-                        <a
+                        <Link
                           href={link.href}
                           className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                         >
                           {link.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

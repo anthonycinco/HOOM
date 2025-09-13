@@ -10,9 +10,9 @@ export default function Properties() {
   const properties = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop',
       price: 'P8,500.00',
-      name: 'Orion\'s Homestay',
+      name: 'Student Haven Dormitory',
       location: 'Nasipit, Talamban, Cebu City',
       beds: 3,
       baths: 2,
@@ -21,9 +21,9 @@ export default function Properties() {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1529408632839-a54952c491e5?w=400&h=300&fit=crop',
       price: 'P7,200.00',
-      name: 'Golden Pad',
+      name: 'Campus View Apartment',
       location: 'Colon Street, Cebu City, 6000',
       beds: 4,
       baths: 2,
@@ -32,9 +32,9 @@ export default function Properties() {
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=300&fit=crop',
       price: 'P10,500.00',
-      name: 'Homenest',
+      name: 'Modern Student Housing',
       location: 'Fatima Street, Duljo, Cebu City, 6000',
       beds: 4,
       baths: 3,

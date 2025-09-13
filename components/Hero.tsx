@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { MapPin, Calendar, Search } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function Hero() {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState('rent')
   const [location, setLocation] = useState('Cebu City, Cebu')
   const [moveInDate, setMoveInDate] = useState('')
@@ -20,7 +22,13 @@ export default function Hero() {
   }
 
   const handleSearch = () => {
-    console.log('Searching for:', { activeTab, location, moveInDate })
+    if (activeTab === 'rent') {
+      router.push('/rent')
+    } else if (activeTab === 'buy') {
+      router.push('/buy')
+    } else if (activeTab === 'sell') {
+      router.push('/sell')
+    }
   }
 
   return (
@@ -65,33 +73,39 @@ export default function Hero() {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex-1 relative">
-                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                  <input
-                    type="text"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-                    placeholder="Enter location"
-                  />
-                </div>
-                <div className="flex-1 relative">
-                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                  <input
-                    type="text"
-                    value={moveInDate}
-                    onChange={(e) => setMoveInDate(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-                    placeholder="Select Move-in Date"
-                  />
+              <div className="space-y-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1 relative">
+                    <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                    <input
+                      type="text"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+                      placeholder={activeTab === 'rent' ? 'Cebu City, Cebu' : activeTab === 'buy' ? 'Enter city or neighborhood' : 'Enter property address'}
+                    />
+                  </div>
+                  <div className="flex-1 relative">
+                    <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                    <input
+                      type="text"
+                      value={moveInDate}
+                      onChange={(e) => setMoveInDate(e.target.value)}
+                      className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+                      placeholder={activeTab === 'rent' ? 'Select Move-in Date' : activeTab === 'buy' ? 'Preferred Date' : 'Listing Date'}
+                    />
+                  </div>
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="btn-primary flex items-center space-x-2 whitespace-nowrap"
+                  className="w-full sm:w-auto btn-primary flex items-center justify-center space-x-2 text-lg py-4 px-8"
                 >
                   <Search className="h-5 w-5" />
-                  <span>Browse Properties</span>
+                  <span>
+                    {activeTab === 'rent' ? 'Browse Properties' : 
+                     activeTab === 'buy' ? 'Search Properties' : 
+                     'List Property'}
+                  </span>
                 </button>
               </div>
             </div>
