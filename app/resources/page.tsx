@@ -56,11 +56,11 @@ export default function ResourcesPage() {
   const faqs = [
     {
       question: 'How do I verify a property listing?',
-      answer: 'All properties on hoom are verified through our hoomvalue system. Look for the "hoomvalue CHECKED" badge on listings.'
+      answer: 'All properties on <span className="font-bold text-primary-600">hoom</span> are verified through our hoomvalue system. Look for the "hoomvalue CHECKED" badge on listings.'
     },
     {
-      question: 'What fees does hoom charge?',
-      answer: 'hoom charges a 10% commission only when a successful rental transaction is completed. No upfront fees for students or landlords.'
+      question: 'What fees does <span className="font-bold text-primary-600">hoom</span> charge?',
+      answer: '<span className="font-bold text-primary-600">hoom</span> charges a 10% commission only when a successful rental transaction is completed. No upfront fees for students or landlords.'
     },
     {
       question: 'How do I contact a landlord?',
@@ -155,7 +155,7 @@ export default function ResourcesPage() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 text-primary-500" />
-                    <span className="text-gray-700">support@hoom.com</span>
+                    <span className="text-gray-700">support@<span className="font-bold text-primary-600">hoom</span>.com</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <MessageCircle className="h-5 w-5 text-primary-500" />
@@ -171,8 +171,8 @@ export default function ResourcesPage() {
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2" dangerouslySetInnerHTML={{ __html: faq.question }}></h3>
+                  <p className="text-gray-600" dangerouslySetInnerHTML={{ __html: faq.answer }}></p>
                 </div>
               ))}
             </div>

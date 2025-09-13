@@ -14,9 +14,6 @@ export default function Hero() {
   const [moveOutDate, setMoveOutDate] = useState('')
   const [guests, setGuests] = useState('1')
   const [showGuestMenu, setShowGuestMenu] = useState(false)
-  const [showLocationMenu, setShowLocationMenu] = useState(false)
-  const [showDateMenu, setShowDateMenu] = useState(false)
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([])
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab)
@@ -38,13 +35,6 @@ export default function Hero() {
     }
   }
 
-  const toggleFilter = (filter: string) => {
-    setSelectedFilters(prev => 
-      prev.includes(filter) 
-        ? prev.filter(f => f !== filter)
-        : [...prev, filter]
-    )
-  }
 
   const handleSearch = () => {
     // Add search parameters to the URL
@@ -53,9 +43,6 @@ export default function Hero() {
     searchParams.set('moveInDate', moveInDate)
     searchParams.set('moveOutDate', moveOutDate)
     searchParams.set('guests', guests)
-    if (selectedFilters.length > 0) {
-      searchParams.set('filters', selectedFilters.join(','))
-    }
     
     if (activeTab === 'rent') {
       router.push(`/rent?${searchParams.toString()}`)
@@ -211,29 +198,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Quick Filters */}
-          <div className="flex flex-wrap gap-3 mb-12">
-            {[
-              { id: 'entire-place', label: 'Entire place', icon: '🏠' },
-              { id: 'dormitory', label: 'Dormitory', icon: '🏢' },
-              { id: 'apartment', label: 'Apartment', icon: '🏘️' },
-              { id: 'under-10k', label: 'Under P10,000', icon: '💰' },
-              { id: 'top-rated', label: 'Top rated', icon: '⭐' }
-            ].map((filter) => (
-              <button 
-                key={filter.id}
-                onClick={() => toggleFilter(filter.id)}
-                className={`flex items-center space-x-3 px-6 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-md ${
-                  selectedFilters.includes(filter.id)
-                    ? 'bg-primary-500 text-white border-2 border-primary-500'
-                    : 'bg-white border-2 border-gray-200 hover:border-primary-300 hover:bg-primary-50'
-                }`}
-              >
-                <span className="text-2xl">{filter.icon}</span>
-                <span className="text-sm font-semibold">{filter.label}</span>
-              </button>
-            ))}
-          </div>
 
           {/* Enhanced Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">

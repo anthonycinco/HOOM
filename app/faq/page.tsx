@@ -26,18 +26,18 @@ export default function FAQPage() {
       items: [
         {
           question: 'What is hoom and how does it work?',
-          answer: 'hoom is a student housing platform that connects students with verified dormitories and apartments in Cebu. We provide a safe, transparent way to find housing with no hidden fees. Simply search for properties, view verified listings, and contact landlords directly through our platform.'
+          answer: '<span className="font-bold text-primary-600">hoom</span> is a student housing platform that connects students with verified dormitories and apartments in Cebu. We provide a safe, transparent way to find housing with no hidden fees. Simply search for properties, view verified listings, and contact landlords directly through our platform.'
         },
         {
           question: 'Is hoom free to use for students?',
-          answer: 'Yes! hoom is completely free for students to browse and search for housing. We only charge a 10% commission to landlords when a successful rental transaction is completed. Students never pay any upfront fees or hidden charges.'
+          answer: 'Yes! <span className="font-bold text-primary-600">hoom</span> is completely free for students to browse and search for housing. We only charge a 10% commission to landlords when a successful rental transaction is completed. Students never pay any upfront fees or hidden charges.'
         },
         {
           question: 'How do I verify a property listing?',
-          answer: 'All properties on hoom are verified through our hoomvalue system. Look for the "hoomvalue CHECKED" badge on listings. This means the property has been inspected, the landlord is verified, and all information is accurate and up-to-date.'
+          answer: 'All properties on <span className="font-bold text-primary-600">hoom</span> are verified through our hoomvalue system. Look for the "hoomvalue CHECKED" badge on listings. This means the property has been inspected, the landlord is verified, and all information is accurate and up-to-date.'
         },
         {
-          question: 'Can I trust the property information on hoom?',
+          question: 'Can I trust the property information on <span className="font-bold text-primary-600">hoom</span>?',
           answer: 'Absolutely! All property information is verified by our team. We conduct regular inspections and work only with trusted landlords. If you find any inaccurate information, please report it to us immediately.'
         }
       ]
@@ -80,7 +80,7 @@ export default function FAQPage() {
         },
         {
           question: 'Can I negotiate the rent price?',
-          answer: 'Some landlords are open to negotiation, especially for longer rental periods. You can discuss this directly with the landlord during your communication. However, prices listed on hoom are generally competitive and fair.'
+          answer: 'Some landlords are open to negotiation, especially for longer rental periods. You can discuss this directly with the landlord during your communication. However, prices listed on <span className="font-bold text-primary-600">hoom</span> are generally competitive and fair.'
         }
       ]
     },
@@ -88,20 +88,20 @@ export default function FAQPage() {
       title: 'Payment & Fees',
       items: [
         {
-          question: 'What fees does hoom charge?',
-          answer: 'hoom charges a 10% commission to landlords only when a successful rental transaction is completed. Students pay no fees to use our platform. The commission is included in the rent price, so there are no hidden charges.'
+          question: 'What fees does <span className="font-bold text-primary-600">hoom</span> charge?',
+          answer: '<span className="font-bold text-primary-600">hoom</span> charges a 10% commission to landlords only when a successful rental transaction is completed. Students pay no fees to use our platform. The commission is included in the rent price, so there are no hidden charges.'
         },
         {
           question: 'How do I pay my rent?',
-          answer: 'Rent payments are made directly to the landlord, not through hoom. Payment methods vary by landlord but typically include bank transfer, cash, or online payment platforms. Discuss payment terms with your landlord before signing the lease.'
+          answer: 'Rent payments are made directly to the landlord, not through <span className="font-bold text-primary-600">hoom</span>. Payment methods vary by landlord but typically include bank transfer, cash, or online payment platforms. Discuss payment terms with your landlord before signing the lease.'
         },
         {
           question: 'What if I have payment issues?',
-          answer: 'If you\'re having trouble with rent payments, contact your landlord immediately to discuss options. hoom can also help mediate payment disputes and provide guidance on your rights as a tenant.'
+          answer: 'If you\'re having trouble with rent payments, contact your landlord immediately to discuss options. <span className="font-bold text-primary-600">hoom</span> can also help mediate payment disputes and provide guidance on your rights as a tenant.'
         },
         {
           question: 'Are there any hidden costs?',
-          answer: 'No! hoom is committed to transparency. All costs are clearly displayed upfront. The only fee is the 10% commission paid by landlords, which is already factored into the rent price you see.'
+          answer: 'No! <span className="font-bold text-primary-600">hoom</span> is committed to transparency. All costs are clearly displayed upfront. The only fee is the 10% commission paid by landlords, which is already factored into the rent price you see.'
         }
       ]
     },
@@ -117,8 +117,8 @@ export default function FAQPage() {
           answer: 'Your safety is our top priority. If you feel unsafe, contact us immediately at our emergency hotline. We can help you find alternative housing and connect you with local authorities if needed.'
         },
         {
-          question: 'Does hoom provide tenant insurance?',
-          answer: 'hoom doesn\'t provide insurance, but we recommend all tenants get renters insurance. This protects your personal belongings and provides liability coverage. Many insurance companies offer affordable student plans.'
+          question: 'Does <span className="font-bold text-primary-600">hoom</span> provide tenant insurance?',
+          answer: '<span className="font-bold text-primary-600">hoom</span> doesn\'t provide insurance, but we recommend all tenants get renters insurance. This protects your personal belongings and provides liability coverage. Many insurance companies offer affordable student plans.'
         },
         {
           question: 'How can I get help if I have questions?',
@@ -137,7 +137,7 @@ export default function FAQPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find answers to common questions about student housing, rental process, and using hoom
+              Find answers to common questions about student housing, rental process, and using <span className="font-bold text-primary-600">hoom</span>
             </p>
           </div>
 
@@ -176,8 +176,7 @@ export default function FAQPage() {
                           />
                         </button>
                         {isOpen && (
-                          <div className="mt-4 text-gray-600 leading-relaxed">
-                            {item.answer}
+                          <div className="mt-4 text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.answer }}>
                           </div>
                         )}
                       </div>
@@ -212,7 +211,7 @@ export default function FAQPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
                 <p className="text-gray-600 mb-4">Get detailed answers via email</p>
-                <p className="text-primary-500 font-semibold">support@hoom.com</p>
+                <p className="text-primary-500 font-semibold">support@<span className="font-bold text-primary-600">hoom</span>.com</p>
               </div>
               
               <div className="text-center">

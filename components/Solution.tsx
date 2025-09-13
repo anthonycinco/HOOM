@@ -11,11 +11,11 @@ export default function Solution() {
   const userContent = {
     tenants: {
       title: 'We make it easy for students to find housing',
-      description: 'Whether you\'re looking for your first dormitory or upgrading to a better place, we simplify the search process and make it efficient. The best part? You\'ll save time and money with HooM\'s trusted, transparent platform.'
+      description: 'Whether you\'re looking for your first dormitory or upgrading to a better place, we simplify the search process and make it efficient. The best part? You\'ll save time and money with <span className="font-bold text-primary-600">hoom</span>\'s trusted, transparent platform.'
     },
     landlords: {
       title: 'We make it easy for landlords to manage properties',
-      description: 'Whether you\'re listing your first property or managing multiple units, we simplify the rental process and make it efficient. The best part? You\'ll reach more students and maximize your income with HooM\'s trusted, transparent platform.'
+      description: 'Whether you\'re listing your first property or managing multiple units, we simplify the rental process and make it efficient. The best part? You\'ll reach more students and maximize your income with <span className="font-bold text-primary-600">hoom</span>\'s trusted, transparent platform.'
     }
   }
 
@@ -79,8 +79,7 @@ export default function Solution() {
               )}
             </h2>
 
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              {userContent[activeUserType as keyof typeof userContent].description}
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: userContent[activeUserType as keyof typeof userContent].description }}>
             </p>
 
             <Link href="/blog" className="btn-primary flex items-center space-x-2">

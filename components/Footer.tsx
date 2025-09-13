@@ -39,7 +39,7 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center space-x-2 mb-6">
                 <HoomLogo size="md" />
-                <span className="text-2xl font-bold text-primary-400">hoom</span>
+                <span className="text-2xl font-bold text-white">hoom</span>
               </Link>
               <p className="text-gray-300 text-sm leading-relaxed mb-6">
                 Redefining student housing and real estate in the Philippines. 
@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
                 <p className="text-gray-400 text-sm">
-                  © 2024 hoom, Inc. All rights reserved.
+                  © 2024 <span className="font-bold text-white">hoom</span>, Inc. All rights reserved.
                 </p>
                 <div className="flex items-center space-x-6">
                   <Link href="/privacy" className="text-gray-400 hover:text-primary-400 text-sm font-medium transition-colors">

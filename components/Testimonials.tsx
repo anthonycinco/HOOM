@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function Testimonials() {
   const testimonials = [
     {
-      content: "hoom made finding my dormitory so easy! The verified listings saved me from scams and the process was transparent.",
+      content: "<span className='font-bold text-primary-600'>hoom</span> made finding my dormitory so easy! The verified listings saved me from scams and the process was transparent.",
       author: {
         name: "Sarah Johnson",
         role: "Student, USC",
@@ -13,7 +13,7 @@ export default function Testimonials() {
       }
     },
     {
-      content: "As a landlord, hoom helped me reach more students and manage my properties efficiently. The platform is user-friendly.",
+      content: "As a landlord, <span className='font-bold text-primary-600'>hoom</span> helped me reach more students and manage my properties efficiently. The platform is user-friendly.",
       author: {
         name: "Michael Chen",
         role: "Property Owner",
@@ -42,7 +42,7 @@ export default function Testimonials() {
             Testimonials
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            See what our property managers, landlords, and tenants have to say about their experience with hoom
+            See what our property managers, landlords, and tenants have to say about their experience with <span className="font-bold text-primary-600">hoom</span>
           </p>
         </div>
 
@@ -51,8 +51,7 @@ export default function Testimonials() {
             <div key={index} className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
               <div className="mb-8">
                 <div className="text-6xl text-primary-200 mb-4">"</div>
-                <p className="text-lg text-gray-700 leading-relaxed relative z-10">
-                  {testimonial.content}
+                <p className="text-lg text-gray-700 leading-relaxed relative z-10" dangerouslySetInnerHTML={{ __html: testimonial.content }}>
                 </p>
               </div>
               <div className="flex items-center space-x-4">
