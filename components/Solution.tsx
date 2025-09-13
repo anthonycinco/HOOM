@@ -25,8 +25,8 @@ export default function Solution() {
           <div className="relative">
             <div className="relative h-96 rounded-2xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop"
-                alt="Modern building"
+                src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop"
+                alt="Student housing building"
                 fill
                 className="object-cover"
               />

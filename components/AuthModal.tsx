@@ -8,9 +8,10 @@ interface AuthModalProps {
   onClose: () => void
   mode: 'login' | 'signup'
   onModeChange: (mode: 'login' | 'signup') => void
+  onLogin: () => void
 }
 
-export default function AuthModal({ isOpen, onClose, mode, onModeChange }: AuthModalProps) {
+export default function AuthModal({ isOpen, onClose, mode, onModeChange, onLogin }: AuthModalProps) {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -26,9 +27,11 @@ export default function AuthModal({ isOpen, onClose, mode, onModeChange }: AuthM
     if (mode === 'signup') {
       console.log('Signing up:', formData)
       alert('Account created successfully! Welcome to hoom!')
+      onLogin()
     } else {
       console.log('Logging in:', { email: formData.email, password: formData.password })
       alert('Welcome back to hoom!')
+      onLogin()
     }
     onClose()
   }

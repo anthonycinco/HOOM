@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthOpen, setIsAuthOpen] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const openAuth = (mode: 'login' | 'signup') => {
@@ -37,37 +38,39 @@ export default function Navbar() {
             <Link href="/sell" className="text-gray-700 hover:text-primary-500 font-medium transition-colors">
               Sell
             </Link>
-            <div className="relative group">
-              <Link href="/manage" className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors">
-                Manage Property
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </Link>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                <Link href="/sell" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  List Property
+            {isLoggedIn && (
+              <div className="relative group">
+                <Link href="/manage" className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors">
+                  Manage Property
+                  <ChevronDown className="ml-1 h-4 w-4" />
                 </Link>
-                <Link href="/manage" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  Dashboard
-                </Link>
-                <Link href="/manage" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  Analytics
-                </Link>
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                  <Link href="/sell" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
+                    List Property
+                  </Link>
+                  <Link href="/manage" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
+                    Dashboard
+                  </Link>
+                  <Link href="/manage" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
+                    Analytics
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
             <div className="relative group">
-              <Link href="/resources" className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors">
-                Resources
+              <Link href="/blog" className="flex items-center text-gray-700 hover:text-primary-500 font-medium transition-colors">
+                Blog
                 <ChevronDown className="ml-1 h-4 w-4" />
               </Link>
               <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                <Link href="/resources" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  Blog
+                <Link href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
+                  All Posts
                 </Link>
-                <Link href="/resources" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
-                  Guides
-                </Link>
-                <Link href="/resources" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
+                <Link href="/faq" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
                   FAQ
+                </Link>
+                <Link href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary-500">
+                  Guides
                 </Link>
               </div>
             </div>
@@ -109,11 +112,16 @@ export default function Navbar() {
               <Link href="/sell" className="block text-gray-700 hover:text-primary-500 font-medium">
                 Sell
               </Link>
-              <Link href="/manage" className="block text-gray-700 hover:text-primary-500 font-medium">
-                Manage Property
+              {isLoggedIn && (
+                <Link href="/manage" className="block text-gray-700 hover:text-primary-500 font-medium">
+                  Manage Property
+                </Link>
+              )}
+              <Link href="/blog" className="block text-gray-700 hover:text-primary-500 font-medium">
+                Blog
               </Link>
-              <Link href="/resources" className="block text-gray-700 hover:text-primary-500 font-medium">
-                Resources
+              <Link href="/faq" className="block text-gray-700 hover:text-primary-500 font-medium">
+                FAQ
               </Link>
               <div className="pt-4 border-t border-gray-200 space-y-2">
                 <button 
@@ -138,6 +146,7 @@ export default function Navbar() {
           onClose={() => setIsAuthOpen(false)}
           mode={authMode}
           onModeChange={setAuthMode}
+          onLogin={() => setIsLoggedIn(true)}
         />
       </div>
     </nav>

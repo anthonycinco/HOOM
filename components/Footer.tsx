@@ -13,9 +13,9 @@ export default function Footer() {
       { name: 'Check HoomValue', href: '/resources' }
     ],
     'ABOUT': [
-      { name: 'Company', href: '/resources' },
-      { name: 'How it works', href: '/resources' },
-      { name: 'Contact', href: '/resources' }
+      { name: 'Company', href: '/blog' },
+      { name: 'How it works', href: '/faq' },
+      { name: 'Contact', href: '/faq' }
     ]
   }
 

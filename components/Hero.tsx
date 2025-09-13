@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { MapPin, Calendar, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function Hero() {
   const router = useRouter()
@@ -115,11 +116,17 @@ export default function Hero() {
             <div className="bg-gray-200 rounded-2xl h-96 lg:h-[500px] relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 opacity-50"></div>
               <div className="absolute top-8 left-8 w-72 bg-white rounded-xl shadow-xl overflow-hidden animate-float">
-                <div className="relative h-40 bg-gray-300">
-                  <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    hoomvalue CHECKED
-                  </div>
-                </div>
+                        <div className="relative h-40 bg-gray-300">
+                          <Image
+                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop"
+                            alt="Student dormitory room"
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            hoomvalue CHECKED
+                          </div>
+                        </div>
                 <div className="p-4">
                   <div className="text-xl font-bold text-primary-500 mb-2">P13,500 /month</div>
                   <div className="font-semibold text-gray-900 mb-1">Unit 2 Calyx Residences</div>
@@ -132,11 +139,17 @@ export default function Hero() {
                 </div>
               </div>
               <div className="absolute bottom-8 right-8 w-64 bg-white rounded-xl shadow-xl overflow-hidden animate-float" style={{ animationDelay: '1s' }}>
-                <div className="relative h-32 bg-gray-300">
-                  <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    hoom
-                  </div>
-                </div>
+                        <div className="relative h-32 bg-gray-300">
+                          <Image
+                            src="https://images.unsplash.com/photo-1529408632839-a54952c491e5?w=300&h=200&fit=crop"
+                            alt="Student apartment"
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            hoom
+                          </div>
+                        </div>
                 <div className="p-4">
                   <div className="text-lg font-bold text-primary-500 mb-2">P7,500 /month</div>
                   <div className="font-semibold text-gray-900 mb-1">Mark's Condo</div>
