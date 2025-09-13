@@ -1,23 +1,26 @@
 'use client'
 
 import { Building, TrendingUp, CheckCircle } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Features() {
+  const { t } = useLanguage()
+  
   const stats = [
     {
       icon: <TrendingUp className="h-8 w-8" />,
       value: '2-5%',
-      label: 'On-Sale/Rent Commission'
+      label: t('features.commission')
     },
     {
       icon: <Building className="h-8 w-8" />,
       value: '3,856',
-      label: 'Property in Sell & Rent'
+      label: t('features.propertyCount')
     },
     {
       icon: <CheckCircle className="h-8 w-8" />,
       value: '~1,000',
-      label: 'Daily Transactions'
+      label: t('features.transactions')
     }
   ]
 
@@ -31,8 +34,9 @@ export default function Features() {
               Why Choose Us
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-              Find your dream place to live in with more than 
-              <span className="text-gradient"> 10k+ properties</span> listed.
+              {t('features.title')}
+              <span className="text-gradient">{t('features.titleHighlight')}</span>
+              {t('features.titleEnd')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {stats.map((stat, index) => (

@@ -5,8 +5,10 @@ import { Heart, Star, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import HoomValueLogo from './HoomValueLogo'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Properties() {
+  const { t } = useLanguage()
   const [favorites, setFavorites] = useState<Set<number>>(new Set())
 
   const properties = [
@@ -117,10 +119,10 @@ export default function Properties() {
             Featured Properties
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-airbnb-dark mb-6">
-            Explore student housing in Cebu
+            {t('properties.title')}
           </h2>
           <p className="text-airbnb-gray-300 text-xl max-w-2xl mx-auto">
-            Discover verified properties perfect for students with modern amenities and great locations
+            {t('properties.subtitle')}
           </p>
         </div>
 
@@ -168,7 +170,7 @@ export default function Properties() {
                 {property.popular && (
                   <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-gradient-to-r from-primary-500 to-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                      Popular
+                      {t('properties.popular')}
                     </span>
                   </div>
                 )}
@@ -181,7 +183,7 @@ export default function Properties() {
                     <span className="text-2xl font-bold text-primary-600">
                       ₱{property.price.toLocaleString()}
                     </span>
-                    <span className="text-airbnb-gray-300 font-medium">/month</span>
+                    <span className="text-airbnb-gray-300 font-medium">{t('properties.month')}</span>
                   </div>
                   <div className="flex items-center space-x-1 bg-primary-50 px-3 py-1 rounded-full">
                     <Star className="h-4 w-4 text-primary-600 fill-current" />
@@ -209,12 +211,12 @@ export default function Properties() {
                 <div className="flex items-center justify-between text-airbnb-gray-300 text-sm bg-gray-50 rounded-xl p-3">
                   <div className="flex items-center space-x-1">
                     <span className="font-semibold">{property.beds}</span>
-                    <span>beds</span>
+                    <span>{t('properties.beds')}</span>
                   </div>
                   <div className="w-px h-4 bg-gray-300"></div>
                   <div className="flex items-center space-x-1">
                     <span className="font-semibold">{property.baths}</span>
-                    <span>baths</span>
+                    <span>{t('properties.baths')}</span>
                   </div>
                   <div className="w-px h-4 bg-gray-300"></div>
                   <div className="flex items-center space-x-1">
@@ -232,7 +234,7 @@ export default function Properties() {
             href="/rent"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-bold rounded-2xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
-            <span>Explore All Properties</span>
+            <span>{t('properties.exploreAll')}</span>
             <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

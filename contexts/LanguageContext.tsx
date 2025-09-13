@@ -52,6 +52,16 @@ const translations = {
     'properties.baths': 'baths',
     'properties.popular': 'Popular',
     
+    // Solution
+    'solution.tenants.title': 'We make it easy for students to find housing',
+    'solution.tenants.description': 'Whether you\'re looking for your first dormitory or upgrading to a better place, we simplify the search process and make it efficient. The best part? You\'ll save time and money with hoom\'s trusted, transparent platform.',
+    'solution.landlords.title': 'We make it easy for landlords to manage properties',
+    'solution.landlords.description': 'Whether you\'re listing your first property or managing multiple units, we simplify the rental process and make it efficient. The best part? You\'ll reach more students and maximize your income with hoom\'s trusted, transparent platform.',
+    'solution.tenants': 'For Students',
+    'solution.landlords': 'For Landlords',
+    'solution.watchVideo': 'Watch Video',
+    'solution.learnMore': 'Learn More',
+    
     // Common
     'common.loading': 'Loading...',
     'common.error': 'Something went wrong',
@@ -120,6 +130,16 @@ const translations = {
     'properties.beds': 'kama',
     'properties.baths': 'banyo',
     'properties.popular': 'Sikat',
+    
+    // Solution
+    'solution.tenants.title': 'Ginagawa naming madali para sa mga estudyante na makahanap ng tirahan',
+    'solution.tenants.description': 'Kung naghahanap ka ng inyong unang dormitoryo o nag-upgrade sa mas magandang lugar, ginagawa naming simple ang proseso ng paghahanap at maging efficient. Ang pinakamaganda? Makakatipid kayo ng oras at pera sa trusted, transparent platform ng hoom.',
+    'solution.landlords.title': 'Ginagawa naming madali para sa mga landlords na pamahalaan ang mga properties',
+    'solution.landlords.description': 'Kung nagli-list kayo ng inyong unang property o nagmamanage ng maraming units, ginagawa naming simple ang rental process at maging efficient. Ang pinakamaganda? Makakarating kayo sa mas maraming estudyante at ma-maximize ang inyong income sa trusted, transparent platform ng hoom.',
+    'solution.tenants': 'Para sa mga Estudyante',
+    'solution.landlords': 'Para sa mga Landlords',
+    'solution.watchVideo': 'Panoorin ang Video',
+    'solution.learnMore': 'Matuto Pa',
     
     // Common
     'common.loading': 'Naglo-load...',
@@ -190,6 +210,16 @@ const translations = {
     'properties.baths': '욕실',
     'properties.popular': '인기',
     
+    // Solution
+    'solution.tenants.title': '학생들이 주거를 쉽게 찾을 수 있도록 도와드립니다',
+    'solution.tenants.description': '첫 기숙사를 찾거나 더 나은 곳으로 업그레이드하든, 검색 과정을 단순화하고 효율적으로 만듭니다. 가장 좋은 점? hoom의 신뢰할 수 있고 투명한 플랫폼으로 시간과 돈을 절약할 수 있습니다.',
+    'solution.landlords.title': '집주인이 부동산을 쉽게 관리할 수 있도록 도와드립니다',
+    'solution.landlords.description': '첫 부동산을 등록하거나 여러 단위를 관리하든, 임대 과정을 단순화하고 효율적으로 만듭니다. 가장 좋은 점? hoom의 신뢰할 수 있고 투명한 플랫폼으로 더 많은 학생들에게 도달하고 수입을 극대화할 수 있습니다.',
+    'solution.tenants': '학생용',
+    'solution.landlords': '집주인용',
+    'solution.watchVideo': '비디오 보기',
+    'solution.learnMore': '더 알아보기',
+    
     // Common
     'common.loading': '로딩 중...',
     'common.error': '문제가 발생했습니다',
@@ -259,6 +289,16 @@ const translations = {
     'properties.baths': 'バス',
     'properties.popular': '人気',
     
+    // Solution
+    'solution.tenants.title': '学生が住宅を見つけやすくします',
+    'solution.tenants.description': '初めての寮を探している場合でも、より良い場所にアップグレードしている場合でも、検索プロセスを簡素化し、効率的にします。最も良い点は？hoomの信頼できる透明なプラットフォームで時間とお金を節約できることです。',
+    'solution.landlords.title': '大家が物件を管理しやすくします',
+    'solution.landlords.description': '初めての物件を掲載している場合でも、複数のユニットを管理している場合でも、賃貸プロセスを簡素化し、効率的にします。最も良い点は？hoomの信頼できる透明なプラットフォームでより多くの学生にリーチし、収入を最大化できることです。',
+    'solution.tenants': '学生向け',
+    'solution.landlords': '大家向け',
+    'solution.watchVideo': '動画を見る',
+    'solution.learnMore': 'もっと学ぶ',
+    
     // Common
     'common.loading': '読み込み中...',
     'common.error': 'エラーが発生しました',
@@ -327,6 +367,16 @@ const translations = {
     'properties.beds': '卧室',
     'properties.baths': '浴室',
     'properties.popular': '热门',
+    
+    // Solution
+    'solution.tenants.title': '我们让学生轻松找到住房',
+    'solution.tenants.description': '无论您是在寻找第一个宿舍还是升级到更好的地方，我们都简化搜索过程并使其高效。最好的部分？您将通过hoom值得信赖的透明平台节省时间和金钱。',
+    'solution.landlords.title': '我们让房东轻松管理房产',
+    'solution.landlords.description': '无论您是首次列出房产还是管理多个单元，我们都简化租赁过程并使其高效。最好的部分？您将通过hoom值得信赖的透明平台接触更多学生并最大化收入。',
+    'solution.tenants': '学生版',
+    'solution.landlords': '房东版',
+    'solution.watchVideo': '观看视频',
+    'solution.learnMore': '了解更多',
     
     // Common
     'common.loading': '加载中...',

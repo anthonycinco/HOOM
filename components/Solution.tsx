@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { Play, Home, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Solution() {
+  const { t } = useLanguage()
   const [activeUserType, setActiveUserType] = useState('tenants')
 
   const userContent = {
@@ -64,26 +66,20 @@ export default function Solution() {
                       : 'text-gray-600 border border-gray-300 hover:bg-gray-50'
                   }`}
                 >
-                  For {type}
+                  {t(`solution.${type}`)}
                 </button>
               ))}
             </div>
 
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              {userContent[activeUserType as keyof typeof userContent].title.split(' ').map((word, index) => 
-                word === 'easy' ? (
-                  <span key={index} className="text-primary-500"> {word} </span>
-                ) : (
-                  <span key={index}> {word} </span>
-                )
-              )}
+              {t(`solution.${activeUserType}.title`)}
             </h2>
 
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: userContent[activeUserType as keyof typeof userContent].description }}>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: t(`solution.${activeUserType}.description`) }}>
             </p>
 
             <Link href="/blog" className="btn-primary flex items-center space-x-2">
-              <span>See more</span>
+              <span>{t('solution.learnMore')}</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
