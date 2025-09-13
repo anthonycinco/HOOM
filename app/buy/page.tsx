@@ -33,7 +33,7 @@ export default function BuyPage() {
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop',
       price: 'P3,200,000',
       name: 'Modern Studio Unit',
       location: 'Banilad, Cebu City',
@@ -76,14 +76,14 @@ export default function BuyPage() {
                 <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
-                  placeholder="Enter location"
+                  placeholder="Enter location or neighborhood"
                   className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 />
               </div>
               <div className="flex-1 relative">
                 <DollarSign className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <select className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                  <option>Price Range</option>
+                  <option>Budget Range</option>
                   <option>Under P2M</option>
                   <option>P2M - P3M</option>
                   <option>P3M - P5M</option>
@@ -95,9 +95,12 @@ export default function BuyPage() {
                   <Home className="h-5 w-5" />
                   <span>Property Type</span>
                 </button>
+                <button className="btn-outline flex items-center space-x-2">
+                  <span>Investment Type</span>
+                </button>
                 <button className="btn-primary flex items-center space-x-2">
                   <Search className="h-5 w-5" />
-                  <span>Search</span>
+                  <span>Find Properties</span>
                 </button>
               </div>
             </div>

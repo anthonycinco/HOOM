@@ -195,6 +195,32 @@ export default function RentPage() {
                 </div>
               </div>
 
+              {/* Move-in Date */}
+              <div className="flex-1 relative">
+                <div className="flex items-center border border-airbnb-gray-100 rounded-lg px-4 py-3 hover:border-airbnb-dark transition-colors">
+                  <span className="text-airbnb-gray-300 mr-3 text-sm">📅</span>
+                  <input
+                    type="date"
+                    placeholder="Move-in date"
+                    className="flex-1 outline-none text-airbnb-dark placeholder-airbnb-gray-300"
+                  />
+                </div>
+              </div>
+
+              {/* Number of Guests */}
+              <div className="flex-1 relative">
+                <div className="flex items-center border border-airbnb-gray-100 rounded-lg px-4 py-3 hover:border-airbnb-dark transition-colors">
+                  <span className="text-airbnb-gray-300 mr-3 text-sm">👥</span>
+                  <select className="flex-1 outline-none text-airbnb-dark">
+                    <option>Number of guests</option>
+                    <option>1 guest</option>
+                    <option>2 guests</option>
+                    <option>3 guests</option>
+                    <option>4+ guests</option>
+                  </select>
+                </div>
+              </div>
+
               {/* Filters */}
               <div className="flex items-center space-x-4">
                 <button 

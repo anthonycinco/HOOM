@@ -16,7 +16,7 @@ export default function SellPage() {
                 List Your Property
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Sell Your Property</h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">List your property and reach thousands of students looking for housing. Join our community of successful property owners.</p>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">List your property for sale and reach thousands of students and investors looking for housing. Join our community of successful property owners.</p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-16">
@@ -72,15 +72,27 @@ export default function SellPage() {
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block text-lg font-semibold text-gray-700 mb-3">Price (PHP)</label>
-                      <div className="relative">
-                        <DollarSign className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
-                        <input
-                          type="number"
-                          placeholder="Enter asking price"
-                          className="w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
-                        />
+                    <div className="grid grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-lg font-semibold text-gray-700 mb-3">Asking Price (PHP)</label>
+                        <div className="relative">
+                          <DollarSign className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+                          <input
+                            type="number"
+                            placeholder="Enter asking price"
+                            className="w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-lg font-semibold text-gray-700 mb-3">Property Status</label>
+                        <select className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg">
+                          <option>Select Status</option>
+                          <option>Ready for Occupancy</option>
+                          <option>Under Construction</option>
+                          <option>Pre-selling</option>
+                          <option>Resale</option>
+                        </select>
                       </div>
                     </div>
 
