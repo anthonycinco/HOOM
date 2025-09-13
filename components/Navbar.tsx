@@ -5,6 +5,8 @@ import { Menu, X, ChevronDown, User, Globe, Menu as MenuIcon } from 'lucide-reac
 import Link from 'next/link'
 import AuthModal from './AuthModal'
 import HoomLogo from './HoomLogo'
+import LanguageToggle from './LanguageToggle'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,6 +14,7 @@ export default function Navbar() {
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const { t } = useLanguage()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const openAuth = (mode: 'login' | 'signup') => {
@@ -32,33 +35,31 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             <Link href="/rent" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
-              Rent
+              {t('nav.rent')}
             </Link>
             <Link href="/buy" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
-              Buy
+              {t('nav.buy')}
             </Link>
             <Link href="/sell" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
-              Sell
+              {t('nav.sell')}
             </Link>
             <Link href="/blog" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
-              Blog
+              {t('nav.blog')}
             </Link>
             <Link href="/faq" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
-              FAQ
+              {t('nav.faq')}
             </Link>
           </div>
 
           {/* Right Side - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
+            {/* Language Toggle */}
+            <LanguageToggle />
+
             {/* Become a Host */}
             <Link href="/sell" className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors">
               Become a Host
             </Link>
-
-            {/* Language/Currency */}
-            <button className="p-2 hover:bg-airbnb-gray-50 rounded-full transition-colors">
-              <Globe className="h-5 w-5 text-airbnb-dark" />
-            </button>
 
             {/* User Menu */}
             {isLoggedIn ? (
@@ -98,13 +99,13 @@ export default function Navbar() {
                   onClick={() => openAuth('login')}
                   className="text-airbnb-dark hover:text-primary-600 font-medium transition-colors"
                 >
-                  Log in
+                  {t('nav.login')}
                 </button>
                 <button 
                   onClick={() => openAuth('signup')}
                   className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  Sign up
+                  {t('nav.signup')}
                 </button>
               </div>
             )}
@@ -123,40 +124,45 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-airbnb-gray-100 bg-white">
             <div className="py-4 space-y-1">
+              {/* Language Toggle for Mobile */}
+              <div className="px-4 py-2 border-b border-airbnb-gray-100">
+                <LanguageToggle />
+              </div>
+              
               <Link 
                 href="/rent" 
                 className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Rent
+                {t('nav.rent')}
               </Link>
               <Link 
                 href="/buy" 
                 className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Buy
+                {t('nav.buy')}
               </Link>
               <Link 
                 href="/sell" 
                 className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Sell
+                {t('nav.sell')}
               </Link>
               <Link 
                 href="/blog" 
                 className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Blog
+                {t('nav.blog')}
               </Link>
               <Link 
                 href="/faq" 
                 className="block px-4 py-3 text-airbnb-dark hover:bg-airbnb-gray-50 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                FAQ
+                {t('nav.faq')}
               </Link>
               
               <hr className="my-4" />
@@ -196,7 +202,7 @@ export default function Navbar() {
                     }}
                     className="w-full text-left py-3 text-airbnb-dark font-medium"
                   >
-                    Log in
+                    {t('nav.login')}
                   </button>
                   <button 
                     onClick={() => {
@@ -205,7 +211,7 @@ export default function Navbar() {
                     }}
                     className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-3 rounded-lg font-semibold shadow-lg"
                   >
-                    Sign up
+                    {t('nav.signup')}
                   </button>
                 </div>
               )}

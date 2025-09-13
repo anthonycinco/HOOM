@@ -5,9 +5,11 @@ import { MapPin, Calendar, Users, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import HoomValueLogo from './HoomValueLogo'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Hero() {
   const router = useRouter()
+  const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState('rent')
   const [location, setLocation] = useState('Cebu City, Cebu')
   const [moveInDate, setMoveInDate] = useState('')
@@ -71,11 +73,11 @@ export default function Hero() {
               Trusted by 50,000+ students
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-airbnb-dark mb-8 leading-tight">
-              Find your perfect
-              <span className="text-gradient block">student home</span>
+              {t('hero.title')}
+              <span className="text-gradient block">{t('hero.titleHighlight')}</span>
             </h1>
             <p className="text-xl sm:text-2xl text-airbnb-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Discover verified dormitories and apartments in Cebu. Safe, affordable, and perfect for students.
+              {t('hero.subtitle')}
             </p>
           </div>
 
@@ -93,7 +95,7 @@ export default function Hero() {
                       : 'text-primary-400 hover:text-primary-600 hover:bg-white/50'
                   }`}
                 >
-                  {tab}
+                  {t(`nav.${tab}`)}
                 </button>
               ))}
             </div>
@@ -109,7 +111,7 @@ export default function Hero() {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
-                    placeholder={activeTab === 'rent' ? 'Enter city or neighborhood' : activeTab === 'buy' ? 'Enter city or neighborhood' : 'Enter property address'}
+                    placeholder={t('hero.searchPlaceholder')}
                   />
                   <MapPin className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
@@ -193,7 +195,7 @@ export default function Hero() {
                 className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 px-8 rounded-xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 <Search className="h-5 w-5" />
-                <span>Search Properties</span>
+                <span>{t('hero.searchButton')}</span>
               </button>
             </div>
           </div>
@@ -203,19 +205,19 @@ export default function Hero() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">50k+</div>
-              <div className="text-airbnb-gray-300 text-sm font-medium">Students</div>
+              <div className="text-airbnb-gray-300 text-sm font-medium">{t('hero.students')}</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">10k+</div>
-              <div className="text-airbnb-gray-300 text-sm font-medium">Properties</div>
+              <div className="text-airbnb-gray-300 text-sm font-medium">{t('hero.properties')}</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">100+</div>
-              <div className="text-airbnb-gray-300 text-sm font-medium">Cities</div>
+              <div className="text-airbnb-gray-300 text-sm font-medium">{t('hero.cities')}</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">4.9</div>
-              <div className="text-airbnb-gray-300 text-sm font-medium">Rating</div>
+              <div className="text-airbnb-gray-300 text-sm font-medium">{t('hero.rating')}</div>
             </div>
           </div>
         </div>
