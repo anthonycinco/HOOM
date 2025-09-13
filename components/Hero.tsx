@@ -11,18 +11,39 @@ export default function Hero() {
   const [activeTab, setActiveTab] = useState('rent')
   const [location, setLocation] = useState('Cebu City, Cebu')
   const [moveInDate, setMoveInDate] = useState('')
+  const [moveOutDate, setMoveOutDate] = useState('')
   const [guests, setGuests] = useState('1')
   const [showGuestMenu, setShowGuestMenu] = useState(false)
+  const [showLocationMenu, setShowLocationMenu] = useState(false)
+  const [showDateMenu, setShowDateMenu] = useState(false)
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([])
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab)
     if (tab === 'buy') {
       setLocation('Enter city or neighborhood')
+      setMoveInDate('')
+      setMoveOutDate('')
+      setGuests('1')
     } else if (tab === 'sell') {
       setLocation('Enter property address')
+      setMoveInDate('')
+      setMoveOutDate('')
+      setGuests('1')
     } else {
       setLocation('Cebu City, Cebu')
+      setMoveInDate('')
+      setMoveOutDate('')
+      setGuests('1')
     }
+  }
+
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters(prev => 
+      prev.includes(filter) 
+        ? prev.filter(f => f !== filter)
+        : [...prev, filter]
+    )
   }
 
   const handleSearch = () => {
@@ -30,7 +51,11 @@ export default function Hero() {
     const searchParams = new URLSearchParams()
     searchParams.set('location', location)
     searchParams.set('moveInDate', moveInDate)
+    searchParams.set('moveOutDate', moveOutDate)
     searchParams.set('guests', guests)
+    if (selectedFilters.length > 0) {
+      searchParams.set('filters', selectedFilters.join(','))
+    }
     
     if (activeTab === 'rent') {
       router.push(`/rent?${searchParams.toString()}`)
@@ -53,12 +78,12 @@ export default function Hero() {
       <div className="container-custom relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-6 py-3 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-8">
               <span className="w-2 h-2 bg-primary-500 rounded-full mr-2 animate-pulse"></span>
               Trusted by 50,000+ students
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-airbnb-dark mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-airbnb-dark mb-8 leading-tight">
               Find your perfect
               <span className="text-gradient block">student home</span>
             </h1>
@@ -67,136 +92,142 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Search Bar - Enhanced Design */}
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-3 mb-12 backdrop-blur-sm">
-            <div className="flex flex-col lg:flex-row">
-              {/* Tab Buttons */}
-              <div className="flex rounded-2xl bg-gradient-to-r from-primary-50 to-primary-100 p-1 mb-4 lg:mb-0 lg:mr-4">
-                {['rent', 'buy', 'sell'].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => handleTabChange(tab)}
-                    className={`flex-1 py-4 px-6 rounded-xl font-semibold text-sm transition-all duration-300 capitalize ${
-                      activeTab === tab
-                        ? 'bg-white text-primary-600 shadow-lg transform scale-105'
-                        : 'text-primary-400 hover:text-primary-600 hover:bg-white/50'
-                    }`}
-                  >
-                    {tab}
-                  </button>
-                ))}
-              </div>
+          {/* Search Bar - Redesigned */}
+          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 mb-16 backdrop-blur-sm">
+            {/* Tab Buttons */}
+            <div className="flex rounded-2xl bg-gradient-to-r from-primary-50 to-primary-100 p-1 mb-6">
+              {['rent', 'buy', 'sell'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => handleTabChange(tab)}
+                  className={`flex-1 py-4 px-8 rounded-xl font-semibold text-sm transition-all duration-300 capitalize ${
+                    activeTab === tab
+                      ? 'bg-white text-primary-600 shadow-lg transform scale-105'
+                      : 'text-primary-400 hover:text-primary-600 hover:bg-white/50'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
 
-              {/* Search Inputs */}
-              <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3">
-                {/* Location */}
-                <div className="relative group">
+            {/* Search Form */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Location */}
+              <div className="relative">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Where</label>
+                <div className="relative">
                   <input
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full text-left p-5 border-2 border-gray-200 rounded-2xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300 group-hover:shadow-md"
+                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
                     placeholder="Enter location"
                   />
-                  <div className="absolute left-5 top-2 text-sm font-semibold text-airbnb-dark">Where</div>
-                  <MapPin className="absolute right-5 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary-400 group-hover:text-primary-500 transition-colors" />
+                  <MapPin className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
+              </div>
 
-                {/* Check-in */}
-                <div className="relative group">
+              {/* Check-in */}
+              <div className="relative">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Check-in</label>
+                <div className="relative">
                   <input
                     type="date"
                     value={moveInDate}
                     onChange={(e) => setMoveInDate(e.target.value)}
-                    className="w-full text-left p-5 border-2 border-gray-200 rounded-2xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300 group-hover:shadow-md"
+                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
                   />
-                  <div className="absolute left-5 top-2 text-sm font-semibold text-airbnb-dark">Check-in</div>
-                  <Calendar className="absolute right-5 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary-400 group-hover:text-primary-500 transition-colors" />
+                  <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
+              </div>
 
-                {/* Check-out */}
-                <div className="relative group">
+              {/* Check-out */}
+              <div className="relative">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Check-out</label>
+                <div className="relative">
                   <input
                     type="date"
-                    className="w-full text-left p-5 border-2 border-gray-200 rounded-2xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300 group-hover:shadow-md"
+                    value={moveOutDate}
+                    onChange={(e) => setMoveOutDate(e.target.value)}
+                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
                   />
-                  <div className="absolute left-5 top-2 text-sm font-semibold text-airbnb-dark">Check-out</div>
-                  <Calendar className="absolute right-5 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary-400 group-hover:text-primary-500 transition-colors" />
+                  <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
+              </div>
 
-                {/* Guests */}
-                <div className="relative group md:col-span-1">
+              {/* Guests */}
+              <div className="relative">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Guests</label>
+                <div className="relative">
                   <button 
                     onClick={() => setShowGuestMenu(!showGuestMenu)}
-                    className="w-full text-left p-5 border-2 border-gray-200 rounded-2xl hover:border-primary-300 transition-all duration-300 group-hover:shadow-md"
+                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300 text-left"
                   >
-                    <div className="text-sm font-semibold text-airbnb-dark mb-1">Who</div>
-                    <div className="text-airbnb-gray-300 text-sm">{guests} guest{guests !== '1' ? 's' : ''}</div>
+                    {guests} guest{guests !== '1' ? 's' : ''}
                   </button>
-                  <Users className="absolute right-5 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary-400 group-hover:text-primary-500 transition-colors" />
+                  <Users className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                   
                   {showGuestMenu && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-2xl shadow-xl z-10 p-4">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">Guests</span>
-                          <div className="flex items-center space-x-3">
-                            <button 
-                              onClick={() => setGuests(Math.max(1, parseInt(guests) - 1).toString())}
-                              className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
-                            >
-                              -
-                            </button>
-                            <span className="w-8 text-center">{guests}</span>
-                            <button 
-                              onClick={() => setGuests((parseInt(guests) + 1).toString())}
-                              className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
-                            >
-                              +
-                            </button>
-                          </div>
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-10 p-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">Guests</span>
+                        <div className="flex items-center space-x-3">
+                          <button 
+                            onClick={() => setGuests(Math.max(1, parseInt(guests) - 1).toString())}
+                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
+                          >
+                            -
+                          </button>
+                          <span className="w-8 text-center">{guests}</span>
+                          <button 
+                            onClick={() => setGuests((parseInt(guests) + 1).toString())}
+                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
+                          >
+                            +
+                          </button>
                         </div>
                       </div>
                     </div>
                   )}
                 </div>
-
-                {/* Search Button */}
-                <div className="md:col-span-2">
-                  <button
-                    onClick={handleSearch}
-                    className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white p-5 rounded-2xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                  >
-                    <Search className="h-5 w-5" />
-                    <span>Search</span>
-                  </button>
-                </div>
               </div>
+            </div>
+
+            {/* Search Button */}
+            <div className="mt-6">
+              <button
+                onClick={handleSearch}
+                className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 px-8 rounded-xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                <Search className="h-5 w-5" />
+                <span>Search Properties</span>
+              </button>
             </div>
           </div>
 
           {/* Quick Filters */}
           <div className="flex flex-wrap gap-3 mb-12">
-            <button className="flex items-center space-x-3 px-6 py-3 bg-white border-2 border-gray-200 rounded-full hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md">
-              <span className="text-2xl">🏠</span>
-              <span className="text-sm font-semibold">Entire place</span>
-            </button>
-            <button className="flex items-center space-x-3 px-6 py-3 bg-white border-2 border-gray-200 rounded-full hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md">
-              <span className="text-2xl">🏢</span>
-              <span className="text-sm font-semibold">Dormitory</span>
-            </button>
-            <button className="flex items-center space-x-3 px-6 py-3 bg-white border-2 border-gray-200 rounded-full hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md">
-              <span className="text-2xl">🏘️</span>
-              <span className="text-sm font-semibold">Apartment</span>
-            </button>
-            <button className="flex items-center space-x-3 px-6 py-3 bg-white border-2 border-gray-200 rounded-full hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md">
-              <span className="text-2xl">💰</span>
-              <span className="text-sm font-semibold">Under P10,000</span>
-            </button>
-            <button className="flex items-center space-x-3 px-6 py-3 bg-white border-2 border-gray-200 rounded-full hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md">
-              <span className="text-2xl">⭐</span>
-              <span className="text-sm font-semibold">Top rated</span>
-            </button>
+            {[
+              { id: 'entire-place', label: 'Entire place', icon: '🏠' },
+              { id: 'dormitory', label: 'Dormitory', icon: '🏢' },
+              { id: 'apartment', label: 'Apartment', icon: '🏘️' },
+              { id: 'under-10k', label: 'Under P10,000', icon: '💰' },
+              { id: 'top-rated', label: 'Top rated', icon: '⭐' }
+            ].map((filter) => (
+              <button 
+                key={filter.id}
+                onClick={() => toggleFilter(filter.id)}
+                className={`flex items-center space-x-3 px-6 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-md ${
+                  selectedFilters.includes(filter.id)
+                    ? 'bg-primary-500 text-white border-2 border-primary-500'
+                    : 'bg-white border-2 border-gray-200 hover:border-primary-300 hover:bg-primary-50'
+                }`}
+              >
+                <span className="text-2xl">{filter.icon}</span>
+                <span className="text-sm font-semibold">{filter.label}</span>
+              </button>
+            ))}
           </div>
 
           {/* Enhanced Stats */}

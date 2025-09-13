@@ -7,23 +7,27 @@ export default function SellPage() {
     <main className="min-h-screen bg-gray-50">
       <Navbar />
       
-      <div className="pt-20 pb-8">
+      <div className="pt-20 pb-16">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Sell Your Property</h1>
-              <p className="text-xl text-gray-600">List your property and reach thousands of students looking for housing</p>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center px-6 py-3 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-6">
+                <span className="w-2 h-2 bg-primary-500 rounded-full mr-2 animate-pulse"></span>
+                List Your Property
+              </div>
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Sell Your Property</h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">List your property and reach thousands of students looking for housing. Join our community of successful property owners.</p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <div className="bg-white p-8 rounded-2xl shadow-lg">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Property Details</h2>
+            <div className="grid lg:grid-cols-2 gap-16">
+              <div className="space-y-10">
+                <div className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Property Details</h2>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
-                      <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Property Type</label>
+                      <select className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg">
                         <option>Select Property Type</option>
                         <option>Dormitory</option>
                         <option>Apartment</option>
@@ -34,21 +38,21 @@ export default function SellPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Location</label>
                       <div className="relative">
-                        <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                        <MapPin className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
                         <input
                           type="text"
                           placeholder="Enter property address"
-                          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                          className="w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Bedrooms</label>
-                        <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <label className="block text-lg font-semibold text-gray-700 mb-3">Bedrooms</label>
+                        <select className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -57,8 +61,8 @@ export default function SellPage() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Bathrooms</label>
-                        <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <label className="block text-lg font-semibold text-gray-700 mb-3">Bathrooms</label>
+                        <select className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -69,97 +73,99 @@ export default function SellPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Price (PHP)</label>
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Price (PHP)</label>
                       <div className="relative">
-                        <DollarSign className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                        <DollarSign className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
                         <input
                           type="number"
                           placeholder="Enter asking price"
-                          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                          className="w-full pl-16 pr-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Description</label>
                       <textarea
-                        rows={4}
-                        placeholder="Describe your property..."
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        rows={6}
+                        placeholder="Describe your property in detail..."
+                        className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg resize-none"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-2xl shadow-lg">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Upload Photos</h2>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                    <Camera className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-4">Drag and drop photos here or click to upload</p>
-                    <button className="btn-outline">Choose Files</button>
+                <div className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Upload Photos</h2>
+                  <div className="border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center hover:border-primary-400 transition-colors duration-300">
+                    <Camera className="h-16 w-16 text-gray-400 mx-auto mb-6" />
+                    <p className="text-lg text-gray-600 mb-6">Drag and drop photos here or click to upload</p>
+                    <button className="px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-600 transition-colors duration-300">
+                      Choose Files
+                    </button>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="bg-white p-8 rounded-2xl shadow-lg">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
+              <div className="space-y-10">
+                <div className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Full Name</label>
                       <input
                         type="text"
                         placeholder="Enter your full name"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Email</label>
                       <input
                         type="email"
                         placeholder="Enter your email"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                      <label className="block text-lg font-semibold text-gray-700 mb-3">Phone Number</label>
                       <input
                         type="tel"
                         placeholder="Enter your phone number"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-lg"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-primary-50 p-8 rounded-2xl">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Why Choose hoom?</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700">Reach thousands of students</span>
+                <div className="bg-gradient-to-br from-primary-50 to-primary-100 p-10 rounded-3xl border border-primary-200">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose hoom?</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-center space-x-4">
+                      <CheckCircle className="h-6 w-6 text-primary-500" />
+                      <span className="text-lg text-gray-700 font-medium">Reach thousands of students</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700">Professional photography</span>
+                    <div className="flex items-center space-x-4">
+                      <CheckCircle className="h-6 w-6 text-primary-500" />
+                      <span className="text-lg text-gray-700 font-medium">Professional photography</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700">Verified listings only</span>
+                    <div className="flex items-center space-x-4">
+                      <CheckCircle className="h-6 w-6 text-primary-500" />
+                      <span className="text-lg text-gray-700 font-medium">Verified listings only</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700">24/7 customer support</span>
+                    <div className="flex items-center space-x-4">
+                      <CheckCircle className="h-6 w-6 text-primary-500" />
+                      <span className="text-lg text-gray-700 font-medium">24/7 customer support</span>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full btn-primary text-lg py-4">
-                  <Upload className="h-6 w-6 mr-2" />
-                  List My Property
+                <button className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-6 px-8 rounded-2xl font-bold text-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center space-x-3">
+                  <Upload className="h-6 w-6" />
+                  <span>List My Property</span>
                 </button>
               </div>
             </div>
