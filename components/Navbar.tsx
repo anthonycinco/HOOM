@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import AuthModal from './AuthModal'
+import HoomLogo from './HoomLogo'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -22,9 +23,9 @@ export default function Navbar() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center text-2xl font-bold text-gray-900">
-              <span>hoom</span>
-              <span className="text-primary-500 ml-1">🏠</span>
+            <Link href="/" className="flex items-center space-x-2">
+              <HoomLogo size="md" />
+              <span className="text-2xl font-bold text-gray-900">hoom</span>
             </Link>
           </div>
 

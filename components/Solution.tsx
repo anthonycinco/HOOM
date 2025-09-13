@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Play, Home, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Solution() {
   const [activeUserType, setActiveUserType] = useState('tenants')
@@ -82,10 +83,10 @@ export default function Solution() {
               {userContent[activeUserType as keyof typeof userContent].description}
             </p>
 
-            <button className="btn-primary flex items-center space-x-2">
+            <Link href="/blog" className="btn-primary flex items-center space-x-2">
               <span>See more</span>
               <ArrowRight className="h-5 w-5" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

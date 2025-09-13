@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Heart, Bed, Bath, Maximize } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
+import HoomValueLogo from './HoomValueLogo'
 
 export default function Properties() {
   const [favorites, setFavorites] = useState<Set<number>>(new Set())
@@ -65,9 +67,9 @@ export default function Properties() {
           <p className="text-xl text-gray-600 mb-8">
             Some of our picked properties near you location.
           </p>
-          <button className="btn-outline">
+          <Link href="/rent" className="btn-outline">
             Browse more properties
-          </button>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -80,9 +82,9 @@ export default function Properties() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                  hoomvalue CHECKED
-                </div>
+                  <div className="absolute top-4 right-4">
+                    <HoomValueLogo size="sm" />
+                  </div>
                 {property.popular && (
                   <div className="absolute bottom-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center space-x-1">
                     <span>⭐</span>

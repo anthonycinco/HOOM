@@ -3,6 +3,7 @@ import Footer from '@/components/Footer'
 import { Search, MapPin, Calendar, Filter, Star, Heart, Bed, Bath, Maximize } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import HoomValueLogo from '@/components/HoomValueLogo'
 
 export default function RentPage() {
   const properties = [
@@ -120,10 +121,10 @@ export default function RentPage() {
                   <Filter className="h-5 w-5" />
                   <span>Filters</span>
                 </button>
-                <button className="btn-primary flex items-center space-x-2">
+                <Link href="/rent" className="btn-primary flex items-center space-x-2">
                   <Search className="h-5 w-5" />
                   <span>Search</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -138,9 +139,9 @@ export default function RentPage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    hoomvalue CHECKED
-                  </div>
+                <div className="absolute top-4 right-4">
+                  <HoomValueLogo size="sm" />
+                </div>
                   {property.popular && (
                     <div className="absolute bottom-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center space-x-1">
                       <Star className="h-3 w-3" />

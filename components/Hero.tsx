@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { MapPin, Calendar, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import HoomValueLogo from './HoomValueLogo'
 
 export default function Hero() {
   const router = useRouter()
@@ -123,8 +124,8 @@ export default function Hero() {
                             fill
                             className="object-cover"
                           />
-                          <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            hoomvalue CHECKED
+                          <div className="absolute top-2 right-2">
+                            <HoomValueLogo size="sm" />
                           </div>
                         </div>
                 <div className="p-4">
@@ -146,8 +147,8 @@ export default function Hero() {
                             fill
                             className="object-cover"
                           />
-                          <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            hoom
+                          <div className="absolute top-2 right-2">
+                            <HoomValueLogo size="sm" showText={false} />
                           </div>
                         </div>
                 <div className="p-4">

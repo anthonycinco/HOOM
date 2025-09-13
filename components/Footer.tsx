@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import HoomLogo from './HoomLogo'
 
 export default function Footer() {
   const footerLinks = {
@@ -24,9 +25,9 @@ export default function Footer() {
       <div className="container-custom">
         <div className="grid lg:grid-cols-4 gap-8 mb-8">
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center text-2xl font-bold mb-4">
-              <span>hoom</span>
-              <span className="text-primary-500 ml-1">🏠</span>
+            <Link href="/" className="flex items-center space-x-2 mb-4">
+              <HoomLogo size="md" />
+              <span className="text-2xl font-bold text-white">hoom</span>
             </Link>
             <p className="text-gray-400 text-sm">
               Redefining student housing and real estate in the Philippines.
