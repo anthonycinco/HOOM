@@ -67,7 +67,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="pt-16 pb-12 bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
+    <section className="pt-24 pb-12 bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-100 rounded-full opacity-20 animate-float"></div>
@@ -112,7 +112,7 @@ export default function Hero() {
             </div>
 
             {/* Search Form */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className={`grid gap-4 ${activeTab === 'rent' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'}`}>
               {/* Location */}
               <div className="relative">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Where</label>
@@ -122,76 +122,81 @@ export default function Hero() {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
-                    placeholder="Enter location"
+                    placeholder={activeTab === 'rent' ? 'Enter city or neighborhood' : activeTab === 'buy' ? 'Enter city or neighborhood' : 'Enter property address'}
                   />
                   <MapPin className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
               </div>
 
-              {/* Check-in */}
-              <div className="relative">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Check-in</label>
-                <div className="relative">
-                  <input
-                    type="date"
-                    value={moveInDate}
-                    onChange={(e) => setMoveInDate(e.target.value)}
-                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
-                  />
-                  <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                </div>
-              </div>
-
-              {/* Check-out */}
-              <div className="relative">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Check-out</label>
-                <div className="relative">
-                  <input
-                    type="date"
-                    value={moveOutDate}
-                    onChange={(e) => setMoveOutDate(e.target.value)}
-                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
-                  />
-                  <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                </div>
-              </div>
-
-              {/* Guests */}
-              <div className="relative">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Guests</label>
-                <div className="relative">
-                  <button 
-                    onClick={() => setShowGuestMenu(!showGuestMenu)}
-                    className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300 text-left"
-                  >
-                    {guests} guest{guests !== '1' ? 's' : ''}
-                  </button>
-                  <Users className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  
-                  {showGuestMenu && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-10 p-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">Guests</span>
-                        <div className="flex items-center space-x-3">
-                          <button 
-                            onClick={() => setGuests(Math.max(1, parseInt(guests) - 1).toString())}
-                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
-                          >
-                            -
-                          </button>
-                          <span className="w-8 text-center">{guests}</span>
-                          <button 
-                            onClick={() => setGuests((parseInt(guests) + 1).toString())}
-                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
+              {/* Only show these fields for rent tab */}
+              {activeTab === 'rent' && (
+                <>
+                  {/* Check-in */}
+                  <div className="relative">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Check-in</label>
+                    <div className="relative">
+                      <input
+                        type="date"
+                        value={moveInDate}
+                        onChange={(e) => setMoveInDate(e.target.value)}
+                        className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
+                      />
+                      <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     </div>
-                  )}
-                </div>
-              </div>
+                  </div>
+
+                  {/* Check-out */}
+                  <div className="relative">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Check-out</label>
+                    <div className="relative">
+                      <input
+                        type="date"
+                        value={moveOutDate}
+                        onChange={(e) => setMoveOutDate(e.target.value)}
+                        className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300"
+                      />
+                      <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    </div>
+                  </div>
+
+                  {/* Guests */}
+                  <div className="relative">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Guests</label>
+                    <div className="relative">
+                      <button 
+                        onClick={() => setShowGuestMenu(!showGuestMenu)}
+                        className="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl hover:border-primary-300 focus:border-primary-500 focus:outline-none transition-all duration-300 text-left"
+                      >
+                        {guests} guest{guests !== '1' ? 's' : ''}
+                      </button>
+                      <Users className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      
+                      {showGuestMenu && (
+                        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-10 p-4">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Guests</span>
+                            <div className="flex items-center space-x-3">
+                              <button 
+                                onClick={() => setGuests(Math.max(1, parseInt(guests) - 1).toString())}
+                                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
+                              >
+                                -
+                              </button>
+                              <span className="w-8 text-center">{guests}</span>
+                              <button 
+                                onClick={() => setGuests((parseInt(guests) + 1).toString())}
+                                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Search Button */}
